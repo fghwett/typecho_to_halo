@@ -9,7 +9,7 @@ tasks:
     desc: 下载官方协议
     cmds:
       - mkdir -p {{.DIR}}{{.OPENAPI_DIR}}
-      - curl -o {{.DIR}}{{.OPENAPI_DIR}}aggregated.json https://api.halo.run/assets/aggregated-DQhGUNLK.json
+#      - curl -o {{.DIR}}{{.OPENAPI_DIR}}aggregated.json https://api.halo.run/assets/aggregated-DQhGUNLK.json
       - curl -o {{.DIR}}{{.OPENAPI_DIR}}console.json https://api.halo.run/assets/apis_console.api_v1alpha1-D962zIMv.json
       - curl -o {{.DIR}}{{.OPENAPI_DIR}}extension.json https://api.halo.run/assets/apis_extension.api_v1alpha1-DWX-TFLS.json
       - curl -o {{.DIR}}{{.OPENAPI_DIR}}public.json https://api.halo.run/assets/apis_public.api_v1alpha1-LXoVm04F.json
@@ -20,7 +20,7 @@ tasks:
     cmds:
       - rm -rf pkg
       - for:
-          - aggregated
+#          - aggregated
           - console
           - extension
           - public

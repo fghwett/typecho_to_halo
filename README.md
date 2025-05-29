@@ -59,6 +59,33 @@ task gen-config
 taks gen-db
 ```
 
+修改客户端上传文件的相关代码，halo上传文件时传的`Content-Type`将作为文件展示的方式。
+```go
+// 原文
+w.Boundary()
+part, err := w.CreateFormFile(formFile.formFileName, filepath.Base(formFile.fileName))
+if err != nil {
+    return nil, err
+}
+_, err = part.Write(formFile.fileBytes)
+if err != nil {
+    return nil, err
+}
+
+// 修改后
+w.Boundary()
+h := make(textproto.MIMEHeader)
+h.Set("Content-Disposition", fmt.Sprintf(`form-data; name="%s"; filename="%s"`, formFile.formFileName, filepath.Base(formFile.fileName)))
+h.Set("Content-Type", mime.TypeByExtension(filepath.Ext(formFile.fileName)))
+if part, err = w.CreatePart(h); err != nil {
+    return nil, err
+}
+_, err = part.Write(formFile.fileBytes)
+if err != nil {
+    return nil, err
+}
+```
+
 快捷命令
 
 ```shell

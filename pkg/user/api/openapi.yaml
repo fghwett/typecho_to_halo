@@ -1,0 +1,3418 @@
+openapi: 3.0.1
+info:
+  title: Halo
+  version: 2.20.18
+servers:
+- description: Generated server url
+  url: http://localhost:8091
+security:
+- basicAuth: []
+  bearerAuth: []
+paths:
+  /apis/api.notification.halo.run/v1alpha1/notifiers/{name}/receiver-config:
+    get:
+      description: Fetch receiver config of notifier
+      operationId: FetchReceiverConfig
+      parameters:
+      - description: Notifier name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                type: object
+          description: default response
+      tags:
+      - NotifierV1alpha1Uc
+    post:
+      description: Save receiver config of notifier
+      operationId: SaveReceiverConfig
+      parameters:
+      - description: Notifier name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+        required: true
+      responses:
+        default:
+          content: {}
+          description: default response
+      tags:
+      - NotifierV1alpha1Uc
+  /apis/api.notification.halo.run/v1alpha1/userspaces/{username}/notification-preferences:
+    get:
+      description: List notification preferences for the authenticated user.
+      operationId: ListUserNotificationPreferences
+      parameters:
+      - description: Username
+        explode: false
+        in: path
+        name: username
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ReasonTypeNotifierMatrix'
+          description: default response
+      tags:
+      - NotificationV1alpha1Uc
+    post:
+      description: Save notification preferences for the authenticated user.
+      operationId: SaveUserNotificationPreferences
+      parameters:
+      - description: Username
+        explode: false
+        in: path
+        name: username
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/ReasonTypeNotifierCollectionRequest'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ReasonTypeNotifierMatrix'
+          description: default response
+      tags:
+      - NotificationV1alpha1Uc
+  /apis/api.notification.halo.run/v1alpha1/userspaces/{username}/notifications:
+    get:
+      description: List notifications for the authenticated user.
+      operationId: ListUserNotifications
+      parameters:
+      - description: Username
+        explode: false
+        in: path
+        name: username
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Page number. Default is 0.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Size number. Default is 0.
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: "Label selector. e.g.: hidden!=true"
+        explode: true
+        in: query
+        name: labelSelector
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Field selector. e.g.: metadata.name==halo"
+        explode: true
+        in: query
+        name: fieldSelector
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Sorting criteria in the format: property,(asc|desc). Default\
+          \ sort order is ascending. Multiple sort criteria are supported."
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/NotificationList'
+          description: default response
+      tags:
+      - NotificationV1alpha1Uc
+  /apis/api.notification.halo.run/v1alpha1/userspaces/{username}/notifications/-/mark-specified-as-read:
+    put:
+      description: Mark the specified notifications as read.
+      operationId: MarkNotificationsAsRead
+      parameters:
+      - description: Username
+        explode: false
+        in: path
+        name: username
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MarkSpecifiedRequest'
+        required: true
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                items:
+                  type: string
+                type: array
+          description: default response
+      tags:
+      - NotificationV1alpha1Uc
+  /apis/api.notification.halo.run/v1alpha1/userspaces/{username}/notifications/{name}:
+    delete:
+      description: Delete the specified notification.
+      operationId: DeleteSpecifiedNotification
+      parameters:
+      - description: Username
+        explode: false
+        in: path
+        name: username
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Notification name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Notification'
+          description: default response
+      tags:
+      - NotificationV1alpha1Uc
+  /apis/api.notification.halo.run/v1alpha1/userspaces/{username}/notifications/{name}/mark-as-read:
+    put:
+      description: Mark the specified notification as read.
+      operationId: MarkNotificationAsRead
+      parameters:
+      - description: Username
+        explode: false
+        in: path
+        name: username
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Notification name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Notification'
+          description: default response
+      tags:
+      - NotificationV1alpha1Uc
+  /apis/uc.api.auth.halo.run/v1alpha1/user-connections/{registerId}/disconnect:
+    put:
+      description: Disconnect my connection from a third-party platform.
+      operationId: DisconnectMyConnection
+      parameters:
+      - description: The registration ID of the third-party platform.
+        explode: false
+        in: path
+        name: registerId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/UserConnection'
+                type: array
+          description: default response
+      tags:
+      - UserConnectionV1alpha1Uc
+  /apis/uc.api.content.halo.run/v1alpha1/posts:
+    get:
+      description: List posts owned by the current user.
+      operationId: ListMyPosts
+      parameters:
+      - description: Page number. Default is 0.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Size number. Default is 0.
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: "Label selector. e.g.: hidden!=true"
+        explode: true
+        in: query
+        name: labelSelector
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Field selector. e.g.: metadata.name==halo"
+        explode: true
+        in: query
+        name: fieldSelector
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Sorting criteria in the format: property,(asc|desc). Default\
+          \ sort order is ascending. Multiple sort criteria are supported."
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Posts filtered by publish phase.
+        explode: true
+        in: query
+        name: publishPhase
+        required: false
+        schema:
+          enum:
+          - DRAFT
+          - PENDING_APPROVAL
+          - PUBLISHED
+          - FAILED
+          type: string
+        style: form
+      - description: Posts filtered by keyword.
+        explode: true
+        in: query
+        name: keyword
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Posts filtered by category including sub-categories.
+        explode: true
+        in: query
+        name: categoryWithChildren
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListedPostList'
+          description: default response
+      tags:
+      - PostV1alpha1Uc
+    post:
+      description: |
+        Create my post. If you want to create a post with content, please set
+         annotation: "content.halo.run/content-json" into annotations and refer
+         to Content for corresponding data type.
+      operationId: CreateMyPost
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/Post'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Post'
+          description: default response
+      tags:
+      - PostV1alpha1Uc
+  /apis/uc.api.content.halo.run/v1alpha1/posts/{name}:
+    get:
+      description: Get post that belongs to the current user.
+      operationId: GetMyPost
+      parameters:
+      - description: Post name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Post'
+          description: default response
+      tags:
+      - PostV1alpha1Uc
+    put:
+      description: Update my post.
+      operationId: UpdateMyPost
+      parameters:
+      - description: Post name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/Post'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Post'
+          description: default response
+      tags:
+      - PostV1alpha1Uc
+  /apis/uc.api.content.halo.run/v1alpha1/posts/{name}/draft:
+    get:
+      description: Get my post draft.
+      operationId: GetMyPostDraft
+      parameters:
+      - description: Post name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Should include patched content and raw or not.
+        explode: true
+        in: query
+        name: patched
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Snapshot'
+          description: default response
+      tags:
+      - PostV1alpha1Uc
+    put:
+      description: |
+        Update draft of my post. Please make sure set annotation:
+        "content.halo.run/content-json" into annotations and refer to
+        Content for corresponding data type.
+      operationId: UpdateMyPostDraft
+      parameters:
+      - description: Post name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/Snapshot'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Snapshot'
+          description: default response
+      tags:
+      - PostV1alpha1Uc
+  /apis/uc.api.content.halo.run/v1alpha1/posts/{name}/publish:
+    put:
+      description: Publish my post.
+      operationId: PublishMyPost
+      parameters:
+      - description: Post name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Post'
+          description: default response
+      tags:
+      - PostV1alpha1Uc
+  /apis/uc.api.content.halo.run/v1alpha1/posts/{name}/recycle:
+    delete:
+      description: Move my post to recycle bin.
+      operationId: RecycleMyPost
+      parameters:
+      - description: Post name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Post'
+          description: default response
+      tags:
+      - PostV1alpha1Uc
+  /apis/uc.api.content.halo.run/v1alpha1/posts/{name}/unpublish:
+    put:
+      description: Unpublish my post.
+      operationId: UnpublishMyPost
+      parameters:
+      - description: Post name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Post'
+          description: default response
+      tags:
+      - PostV1alpha1Uc
+  /apis/uc.api.content.halo.run/v1alpha1/snapshots/{name}:
+    get:
+      description: Get snapshot for one post.
+      operationId: GetSnapshotForPost
+      parameters:
+      - description: Snapshot name.
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Post name.
+        explode: true
+        in: query
+        name: postName
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Should include patched content and raw or not.
+        explode: true
+        in: query
+        name: patched
+        required: false
+        schema:
+          type: boolean
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Snapshot'
+          description: default response
+      tags:
+      - SnapshotV1alpha1Uc
+  /apis/uc.api.security.halo.run/v1alpha1/authentications/two-factor/settings:
+    get:
+      description: Get Two-factor authentication settings.
+      operationId: GetTwoFactorAuthenticationSettings
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TwoFactorAuthSettings'
+          description: default response
+      tags:
+      - TwoFactorAuthV1alpha1Uc
+  /apis/uc.api.security.halo.run/v1alpha1/authentications/two-factor/settings/disabled:
+    put:
+      description: Disable Two-factor authentication
+      operationId: DisableTwoFactor
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PasswordRequest'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TwoFactorAuthSettings'
+          description: default response
+      tags:
+      - TwoFactorAuthV1alpha1Uc
+  /apis/uc.api.security.halo.run/v1alpha1/authentications/two-factor/settings/enabled:
+    put:
+      description: Enable Two-factor authentication
+      operationId: EnableTwoFactor
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PasswordRequest'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TwoFactorAuthSettings'
+          description: default response
+      tags:
+      - TwoFactorAuthV1alpha1Uc
+  /apis/uc.api.security.halo.run/v1alpha1/authentications/two-factor/totp:
+    post:
+      description: Configure a TOTP
+      operationId: ConfigurerTotp
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/TotpRequest'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TwoFactorAuthSettings'
+          description: default response
+      tags:
+      - TwoFactorAuthV1alpha1Uc
+  /apis/uc.api.security.halo.run/v1alpha1/authentications/two-factor/totp/-:
+    delete:
+      operationId: DeleteTotp
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PasswordRequest'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TwoFactorAuthSettings'
+          description: default response
+      tags:
+      - TwoFactorAuthV1alpha1Uc
+  /apis/uc.api.security.halo.run/v1alpha1/authentications/two-factor/totp/auth-link:
+    get:
+      description: "Get TOTP auth link, including secret"
+      operationId: GetTotpAuthLink
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TotpAuthLinkResponse'
+          description: default response
+      tags:
+      - TwoFactorAuthV1alpha1Uc
+  /apis/uc.api.security.halo.run/v1alpha1/devices:
+    get:
+      description: List all user devices
+      operationId: ListDevices
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/UserDevice'
+                type: array
+          description: default response
+      tags:
+      - DeviceV1alpha1Uc
+  /apis/uc.api.security.halo.run/v1alpha1/devices/{deviceId}:
+    delete:
+      description: Revoke a own device
+      operationId: RevokeDevice
+      parameters:
+      - description: Device ID
+        explode: false
+        in: path
+        name: deviceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204 NO_CONTENT":
+          description: default response
+      tags:
+      - DeviceV1alpha1Uc
+  /apis/uc.api.security.halo.run/v1alpha1/personalaccesstokens:
+    get:
+      description: Obtain PAT list.
+      operationId: ObtainPats
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                items:
+                  $ref: '#/components/schemas/PersonalAccessToken'
+                type: array
+          description: default response
+      tags:
+      - PersonalAccessTokenV1alpha1Uc
+    post:
+      description: Generate a PAT.
+      operationId: GeneratePat
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/PersonalAccessToken'
+        required: true
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PersonalAccessToken'
+          description: default response
+      tags:
+      - PersonalAccessTokenV1alpha1Uc
+  /apis/uc.api.security.halo.run/v1alpha1/personalaccesstokens/{name}:
+    delete:
+      description: Delete a PAT
+      operationId: DeletePat
+      parameters:
+      - explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses: {}
+      tags:
+      - PersonalAccessTokenV1alpha1Uc
+    get:
+      description: Obtain a PAT.
+      operationId: ObtainPat
+      parameters:
+      - explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses: {}
+      tags:
+      - PersonalAccessTokenV1alpha1Uc
+  /apis/uc.api.security.halo.run/v1alpha1/personalaccesstokens/{name}/actions/restoration:
+    put:
+      description: Restore a PAT.
+      operationId: RestorePat
+      parameters:
+      - explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses: {}
+      tags:
+      - PersonalAccessTokenV1alpha1Uc
+  /apis/uc.api.security.halo.run/v1alpha1/personalaccesstokens/{name}/actions/revocation:
+    put:
+      description: Revoke a PAT
+      operationId: RevokePat
+      parameters:
+      - explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses: {}
+      tags:
+      - PersonalAccessTokenV1alpha1Uc
+  /apis/uc.api.storage.halo.run/v1alpha1/attachments:
+    get:
+      description: List attachments of the current user uploaded.
+      operationId: ListMyAttachments
+      parameters:
+      - description: Page number. Default is 0.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Size number. Default is 0.
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: "Label selector. e.g.: hidden!=true"
+        explode: true
+        in: query
+        name: labelSelector
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Field selector. e.g.: metadata.name==halo"
+        explode: true
+        in: query
+        name: fieldSelector
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Sorting criteria in the format: property,(asc|desc). Default\
+          \ sort order is ascending. Multiple sort criteria are supported."
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: Filter attachments without group. This parameter will ignore
+          group parameter.
+        explode: true
+        in: query
+        name: ungrouped
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Keyword for searching.
+        explode: true
+        in: query
+        name: keyword
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Acceptable media types.
+        explode: true
+        in: query
+        name: accepts
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AttachmentList'
+          description: default response
+      tags:
+      - AttachmentV1alpha1Uc
+    post:
+      description: Create attachment for the given post.
+      operationId: CreateAttachmentForPost
+      parameters:
+      - description: Wait for permalink.
+        explode: true
+        in: query
+        name: waitForPermalink
+        required: false
+        schema:
+          type: boolean
+        style: form
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PostAttachmentRequest'
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Attachment'
+          description: default response
+      tags:
+      - AttachmentV1alpha1Uc
+  /apis/uc.api.storage.halo.run/v1alpha1/attachments/-/upload:
+    post:
+      description: Upload attachment to user center storage.
+      operationId: UploadUcAttachment
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UcUploadRequest'
+        required: true
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Attachment'
+          description: default response
+      tags:
+      - AttachmentV1alpha1Uc
+  /apis/uc.api.storage.halo.run/v1alpha1/attachments/-/upload-from-url:
+    post:
+      description: Upload attachment from the given URL.
+      operationId: ExternalTransferAttachment_1
+      parameters:
+      - description: Wait for permalink.
+        explode: true
+        in: query
+        name: waitForPermalink
+        required: false
+        schema:
+          type: boolean
+        style: form
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UploadFromUrlRequest'
+        required: true
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Attachment'
+          description: default response
+      tags:
+      - AttachmentV1alpha1Uc
+components:
+  schemas:
+    AddOperation:
+      properties:
+        op:
+          enum:
+          - add
+          type: string
+        path:
+          description: A JSON Pointer path pointing to the location to move/copy from.
+          example: /a/b/c
+          pattern: "^(/[^/~]*(~[01][^/~]*)*)*$"
+          type: string
+        value:
+          description: Value can be any JSON value
+      required:
+      - op
+      - path
+      - value
+      type: object
+    Attachment:
+      example:
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        apiVersion: apiVersion
+        kind: kind
+        spec:
+          groupName: groupName
+          ownerName: ownerName
+          size: 0
+          policyName: policyName
+          displayName: displayName
+          mediaType: mediaType
+          tags:
+          - tags
+          - tags
+        status:
+          permalink: permalink
+          thumbnails:
+            key: thumbnails
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        spec:
+          $ref: '#/components/schemas/AttachmentSpec'
+        status:
+          $ref: '#/components/schemas/AttachmentStatus'
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
+      type: object
+    AttachmentList:
+      example:
+        total: 5
+        last: true
+        size: 1
+        totalPages: 5
+        hasPrevious: true
+        hasNext: true
+        page: 6
+        items:
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          apiVersion: apiVersion
+          kind: kind
+          spec:
+            groupName: groupName
+            ownerName: ownerName
+            size: 0
+            policyName: policyName
+            displayName: displayName
+            mediaType: mediaType
+            tags:
+            - tags
+            - tags
+          status:
+            permalink: permalink
+            thumbnails:
+              key: thumbnails
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          apiVersion: apiVersion
+          kind: kind
+          spec:
+            groupName: groupName
+            ownerName: ownerName
+            size: 0
+            policyName: policyName
+            displayName: displayName
+            mediaType: mediaType
+            tags:
+            - tags
+            - tags
+          status:
+            permalink: permalink
+            thumbnails:
+              key: thumbnails
+        first: true
+      properties:
+        first:
+          description: Indicates whether current page is the first page.
+          type: boolean
+        hasNext:
+          description: Indicates whether current page has previous page.
+          type: boolean
+        hasPrevious:
+          description: Indicates whether current page has previous page.
+          type: boolean
+        items:
+          description: A chunk of items.
+          items:
+            $ref: '#/components/schemas/Attachment'
+          type: array
+        last:
+          description: Indicates whether current page is the last page.
+          type: boolean
+        page:
+          description: "Page number, starts from 1. If not set or equal to 0, it means\
+            \ no pagination."
+          format: int32
+          type: integer
+        size:
+          description: "Size of each page. If not set or equal to 0, it means no pagination."
+          format: int32
+          type: integer
+        total:
+          description: Total elements.
+          format: int64
+          type: integer
+        totalPages:
+          description: Indicates total pages.
+          format: int64
+          type: integer
+      required:
+      - first
+      - hasNext
+      - hasPrevious
+      - items
+      - last
+      - page
+      - size
+      - total
+      - totalPages
+      type: object
+    AttachmentSpec:
+      example:
+        groupName: groupName
+        ownerName: ownerName
+        size: 0
+        policyName: policyName
+        displayName: displayName
+        mediaType: mediaType
+        tags:
+        - tags
+        - tags
+      properties:
+        displayName:
+          description: Display name of attachment
+          type: string
+        groupName:
+          description: Group name
+          type: string
+        mediaType:
+          description: Media type of attachment
+          type: string
+        ownerName:
+          description: Name of User who uploads the attachment
+          type: string
+        policyName:
+          description: Policy name
+          type: string
+        size:
+          description: Size of attachment. Unit is Byte
+          format: int64
+          minimum: 0
+          type: integer
+        tags:
+          description: Tags of attachment
+          items:
+            description: Tag name
+            type: string
+          type: array
+          uniqueItems: true
+      type: object
+    AttachmentStatus:
+      example:
+        permalink: permalink
+        thumbnails:
+          key: thumbnails
+      properties:
+        permalink:
+          description: |
+            Permalink of attachment.
+            If it is in local storage, the public URL will be set.
+            If it is in s3 storage, the Object URL will be set.
+          type: string
+        thumbnails:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+    Category:
+      example:
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        apiVersion: apiVersion
+        kind: kind
+        spec:
+          cover: cover
+          template: template
+          children:
+          - children
+          - children
+          hideFromList: true
+          displayName: displayName
+          description: description
+          preventParentPostCascadeQuery: true
+          priority: 0
+          postTemplate: postTemplate
+          slug: slug
+        status:
+          visiblePostCount: 1
+          postCount: 6
+          permalink: permalink
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        spec:
+          $ref: '#/components/schemas/CategorySpec'
+        status:
+          $ref: '#/components/schemas/CategoryStatus'
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
+      type: object
+    CategorySpec:
+      example:
+        cover: cover
+        template: template
+        children:
+        - children
+        - children
+        hideFromList: true
+        displayName: displayName
+        description: description
+        preventParentPostCascadeQuery: true
+        priority: 0
+        postTemplate: postTemplate
+        slug: slug
+      properties:
+        children:
+          items:
+            type: string
+          type: array
+        cover:
+          type: string
+        description:
+          type: string
+        displayName:
+          minLength: 1
+          type: string
+        hideFromList:
+          type: boolean
+        postTemplate:
+          maxLength: 255
+          type: string
+        preventParentPostCascadeQuery:
+          type: boolean
+        priority:
+          default: 0
+          format: int32
+          type: integer
+        slug:
+          minLength: 1
+          type: string
+        template:
+          maxLength: 255
+          type: string
+      required:
+      - displayName
+      - priority
+      - slug
+      type: object
+    CategoryStatus:
+      example:
+        visiblePostCount: 1
+        postCount: 6
+        permalink: permalink
+      properties:
+        permalink:
+          type: string
+        postCount:
+          format: int32
+          type: integer
+        visiblePostCount:
+          format: int32
+          type: integer
+      type: object
+    Condition:
+      example:
+        reason: reason
+        lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+        message: message
+        type: type
+        status: "TRUE"
+      properties:
+        lastTransitionTime:
+          format: date-time
+          type: string
+        message:
+          maxLength: 32768
+          type: string
+        reason:
+          maxLength: 1024
+          pattern: "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$"
+          type: string
+        status:
+          enum:
+          - "TRUE"
+          - "FALSE"
+          - UNKNOWN
+          type: string
+        type:
+          maxLength: 316
+          pattern: "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$"
+          type: string
+      required:
+      - lastTransitionTime
+      - status
+      - type
+      type: object
+    Contributor:
+      example:
+        displayName: displayName
+        name: name
+        avatar: avatar
+      properties:
+        avatar:
+          type: string
+        displayName:
+          type: string
+        name:
+          type: string
+      type: object
+    CopyOperation:
+      properties:
+        from:
+          description: A JSON Pointer path pointing to the location to move/copy from.
+          example: /a/b/c
+          pattern: "^(/[^/~]*(~[01][^/~]*)*)*$"
+          type: string
+        op:
+          enum:
+          - copy
+          type: string
+        path:
+          description: A JSON Pointer path pointing to the location to move/copy from.
+          example: /a/b/c
+          pattern: "^(/[^/~]*(~[01][^/~]*)*)*$"
+          type: string
+      required:
+      - from
+      - op
+      - path
+      type: object
+    Device:
+      example:
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        apiVersion: apiVersion
+        kind: kind
+        spec:
+          lastAccessedTime: 2000-01-23T04:56:07.000+00:00
+          lastAuthenticatedTime: 2000-01-23T04:56:07.000+00:00
+          ipAddress: ipAddress
+          principalName: principalName
+          userAgent: userAgent
+          sessionId: sessionId
+          rememberMeSeriesId: rememberMeSeriesId
+        status:
+          os: os
+          browser: browser
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        spec:
+          $ref: '#/components/schemas/DeviceSpec'
+        status:
+          $ref: '#/components/schemas/DeviceStatus'
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
+      - status
+      type: object
+    DeviceSpec:
+      example:
+        lastAccessedTime: 2000-01-23T04:56:07.000+00:00
+        lastAuthenticatedTime: 2000-01-23T04:56:07.000+00:00
+        ipAddress: ipAddress
+        principalName: principalName
+        userAgent: userAgent
+        sessionId: sessionId
+        rememberMeSeriesId: rememberMeSeriesId
+      properties:
+        ipAddress:
+          maxLength: 129
+          type: string
+        lastAccessedTime:
+          format: date-time
+          type: string
+        lastAuthenticatedTime:
+          format: date-time
+          type: string
+        principalName:
+          minLength: 1
+          type: string
+        rememberMeSeriesId:
+          type: string
+        sessionId:
+          minLength: 1
+          type: string
+        userAgent:
+          maxLength: 500
+          type: string
+      required:
+      - ipAddress
+      - principalName
+      - sessionId
+      type: object
+    DeviceStatus:
+      example:
+        os: os
+        browser: browser
+      properties:
+        browser:
+          type: string
+        os:
+          type: string
+      type: object
+    Excerpt:
+      example:
+        raw: raw
+        autoGenerate: true
+      properties:
+        autoGenerate:
+          default: true
+          type: boolean
+        raw:
+          type: string
+      required:
+      - autoGenerate
+      type: object
+    JsonPatch:
+      description: JSON schema for JSONPatch operations
+      items:
+        $ref: '#/components/schemas/JsonPatch_inner'
+      minItems: 1
+      type: array
+      uniqueItems: true
+    ListedPost:
+      description: A chunk of items.
+      example:
+        owner:
+          displayName: displayName
+          name: name
+          avatar: avatar
+        post:
+          metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          apiVersion: apiVersion
+          kind: kind
+          spec:
+            owner: owner
+            template: template
+            publishTime: 2000-01-23T04:56:07.000+00:00
+            pinned: false
+            visible: PUBLIC
+            releaseSnapshot: releaseSnapshot
+            allowComment: true
+            priority: 5
+            title: title
+            baseSnapshot: baseSnapshot
+            headSnapshot: headSnapshot
+            tags:
+            - tags
+            - tags
+            cover: cover
+            deleted: false
+            htmlMetas:
+            - key: htmlMetas
+            - key: htmlMetas
+            publish: false
+            categories:
+            - categories
+            - categories
+            excerpt:
+              raw: raw
+              autoGenerate: true
+            slug: slug
+          status:
+            phase: phase
+            observedVersion: 2
+            inProgress: true
+            hideFromList: true
+            commentsCount: 5
+            lastModifyTime: 2000-01-23T04:56:07.000+00:00
+            contributors:
+            - contributors
+            - contributors
+            conditions:
+            - reason: reason
+              lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+              message: message
+              type: type
+              status: "TRUE"
+            - reason: reason
+              lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+              message: message
+              type: type
+              status: "TRUE"
+            excerpt: excerpt
+            permalink: permalink
+        stats:
+          totalComment: 9
+          approvedComment: 7
+          visit: 2
+          upvote: 3
+        categories:
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          apiVersion: apiVersion
+          kind: kind
+          spec:
+            cover: cover
+            template: template
+            children:
+            - children
+            - children
+            hideFromList: true
+            displayName: displayName
+            description: description
+            preventParentPostCascadeQuery: true
+            priority: 0
+            postTemplate: postTemplate
+            slug: slug
+          status:
+            visiblePostCount: 1
+            postCount: 6
+            permalink: permalink
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          apiVersion: apiVersion
+          kind: kind
+          spec:
+            cover: cover
+            template: template
+            children:
+            - children
+            - children
+            hideFromList: true
+            displayName: displayName
+            description: description
+            preventParentPostCascadeQuery: true
+            priority: 0
+            postTemplate: postTemplate
+            slug: slug
+          status:
+            visiblePostCount: 1
+            postCount: 6
+            permalink: permalink
+        contributors:
+        - displayName: displayName
+          name: name
+          avatar: avatar
+        - displayName: displayName
+          name: name
+          avatar: avatar
+        tags:
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          apiVersion: apiVersion
+          kind: kind
+          spec:
+            cover: cover
+            color: color
+            displayName: displayName
+            slug: slug
+          status:
+            observedVersion: 4
+            visiblePostCount: 1
+            postCount: 7
+            permalink: permalink
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          apiVersion: apiVersion
+          kind: kind
+          spec:
+            cover: cover
+            color: color
+            displayName: displayName
+            slug: slug
+          status:
+            observedVersion: 4
+            visiblePostCount: 1
+            postCount: 7
+            permalink: permalink
+      properties:
+        categories:
+          items:
+            $ref: '#/components/schemas/Category'
+          type: array
+        contributors:
+          items:
+            $ref: '#/components/schemas/Contributor'
+          type: array
+        owner:
+          $ref: '#/components/schemas/Contributor'
+        post:
+          $ref: '#/components/schemas/Post'
+        stats:
+          $ref: '#/components/schemas/Stats'
+        tags:
+          items:
+            $ref: '#/components/schemas/Tag'
+          type: array
+      required:
+      - categories
+      - contributors
+      - owner
+      - post
+      - stats
+      - tags
+      type: object
+    ListedPostList:
+      example:
+        total: 6
+        last: true
+        size: 1
+        totalPages: 7
+        hasPrevious: true
+        hasNext: true
+        page: 1
+        items:
+        - owner:
+            displayName: displayName
+            name: name
+            avatar: avatar
+          post:
+            metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            apiVersion: apiVersion
+            kind: kind
+            spec:
+              owner: owner
+              template: template
+              publishTime: 2000-01-23T04:56:07.000+00:00
+              pinned: false
+              visible: PUBLIC
+              releaseSnapshot: releaseSnapshot
+              allowComment: true
+              priority: 5
+              title: title
+              baseSnapshot: baseSnapshot
+              headSnapshot: headSnapshot
+              tags:
+              - tags
+              - tags
+              cover: cover
+              deleted: false
+              htmlMetas:
+              - key: htmlMetas
+              - key: htmlMetas
+              publish: false
+              categories:
+              - categories
+              - categories
+              excerpt:
+                raw: raw
+                autoGenerate: true
+              slug: slug
+            status:
+              phase: phase
+              observedVersion: 2
+              inProgress: true
+              hideFromList: true
+              commentsCount: 5
+              lastModifyTime: 2000-01-23T04:56:07.000+00:00
+              contributors:
+              - contributors
+              - contributors
+              conditions:
+              - reason: reason
+                lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+                message: message
+                type: type
+                status: "TRUE"
+              - reason: reason
+                lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+                message: message
+                type: type
+                status: "TRUE"
+              excerpt: excerpt
+              permalink: permalink
+          stats:
+            totalComment: 9
+            approvedComment: 7
+            visit: 2
+            upvote: 3
+          categories:
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            apiVersion: apiVersion
+            kind: kind
+            spec:
+              cover: cover
+              template: template
+              children:
+              - children
+              - children
+              hideFromList: true
+              displayName: displayName
+              description: description
+              preventParentPostCascadeQuery: true
+              priority: 0
+              postTemplate: postTemplate
+              slug: slug
+            status:
+              visiblePostCount: 1
+              postCount: 6
+              permalink: permalink
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            apiVersion: apiVersion
+            kind: kind
+            spec:
+              cover: cover
+              template: template
+              children:
+              - children
+              - children
+              hideFromList: true
+              displayName: displayName
+              description: description
+              preventParentPostCascadeQuery: true
+              priority: 0
+              postTemplate: postTemplate
+              slug: slug
+            status:
+              visiblePostCount: 1
+              postCount: 6
+              permalink: permalink
+          contributors:
+          - displayName: displayName
+            name: name
+            avatar: avatar
+          - displayName: displayName
+            name: name
+            avatar: avatar
+          tags:
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            apiVersion: apiVersion
+            kind: kind
+            spec:
+              cover: cover
+              color: color
+              displayName: displayName
+              slug: slug
+            status:
+              observedVersion: 4
+              visiblePostCount: 1
+              postCount: 7
+              permalink: permalink
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            apiVersion: apiVersion
+            kind: kind
+            spec:
+              cover: cover
+              color: color
+              displayName: displayName
+              slug: slug
+            status:
+              observedVersion: 4
+              visiblePostCount: 1
+              postCount: 7
+              permalink: permalink
+        - owner:
+            displayName: displayName
+            name: name
+            avatar: avatar
+          post:
+            metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            apiVersion: apiVersion
+            kind: kind
+            spec:
+              owner: owner
+              template: template
+              publishTime: 2000-01-23T04:56:07.000+00:00
+              pinned: false
+              visible: PUBLIC
+              releaseSnapshot: releaseSnapshot
+              allowComment: true
+              priority: 5
+              title: title
+              baseSnapshot: baseSnapshot
+              headSnapshot: headSnapshot
+              tags:
+              - tags
+              - tags
+              cover: cover
+              deleted: false
+              htmlMetas:
+              - key: htmlMetas
+              - key: htmlMetas
+              publish: false
+              categories:
+              - categories
+              - categories
+              excerpt:
+                raw: raw
+                autoGenerate: true
+              slug: slug
+            status:
+              phase: phase
+              observedVersion: 2
+              inProgress: true
+              hideFromList: true
+              commentsCount: 5
+              lastModifyTime: 2000-01-23T04:56:07.000+00:00
+              contributors:
+              - contributors
+              - contributors
+              conditions:
+              - reason: reason
+                lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+                message: message
+                type: type
+                status: "TRUE"
+              - reason: reason
+                lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+                message: message
+                type: type
+                status: "TRUE"
+              excerpt: excerpt
+              permalink: permalink
+          stats:
+            totalComment: 9
+            approvedComment: 7
+            visit: 2
+            upvote: 3
+          categories:
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            apiVersion: apiVersion
+            kind: kind
+            spec:
+              cover: cover
+              template: template
+              children:
+              - children
+              - children
+              hideFromList: true
+              displayName: displayName
+              description: description
+              preventParentPostCascadeQuery: true
+              priority: 0
+              postTemplate: postTemplate
+              slug: slug
+            status:
+              visiblePostCount: 1
+              postCount: 6
+              permalink: permalink
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            apiVersion: apiVersion
+            kind: kind
+            spec:
+              cover: cover
+              template: template
+              children:
+              - children
+              - children
+              hideFromList: true
+              displayName: displayName
+              description: description
+              preventParentPostCascadeQuery: true
+              priority: 0
+              postTemplate: postTemplate
+              slug: slug
+            status:
+              visiblePostCount: 1
+              postCount: 6
+              permalink: permalink
+          contributors:
+          - displayName: displayName
+            name: name
+            avatar: avatar
+          - displayName: displayName
+            name: name
+            avatar: avatar
+          tags:
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            apiVersion: apiVersion
+            kind: kind
+            spec:
+              cover: cover
+              color: color
+              displayName: displayName
+              slug: slug
+            status:
+              observedVersion: 4
+              visiblePostCount: 1
+              postCount: 7
+              permalink: permalink
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            apiVersion: apiVersion
+            kind: kind
+            spec:
+              cover: cover
+              color: color
+              displayName: displayName
+              slug: slug
+            status:
+              observedVersion: 4
+              visiblePostCount: 1
+              postCount: 7
+              permalink: permalink
+        first: true
+      properties:
+        first:
+          description: Indicates whether current page is the first page.
+          type: boolean
+        hasNext:
+          description: Indicates whether current page has previous page.
+          type: boolean
+        hasPrevious:
+          description: Indicates whether current page has previous page.
+          type: boolean
+        items:
+          description: A chunk of items.
+          items:
+            $ref: '#/components/schemas/ListedPost'
+          type: array
+        last:
+          description: Indicates whether current page is the last page.
+          type: boolean
+        page:
+          description: "Page number, starts from 1. If not set or equal to 0, it means\
+            \ no pagination."
+          format: int32
+          type: integer
+        size:
+          description: "Size of each page. If not set or equal to 0, it means no pagination."
+          format: int32
+          type: integer
+        total:
+          description: Total elements.
+          format: int64
+          type: integer
+        totalPages:
+          description: Indicates total pages.
+          format: int64
+          type: integer
+      required:
+      - first
+      - hasNext
+      - hasPrevious
+      - items
+      - last
+      - page
+      - size
+      - total
+      - totalPages
+      type: object
+    MarkSpecifiedRequest:
+      example:
+        names:
+        - names
+        - names
+      properties:
+        names:
+          items:
+            type: string
+          type: array
+      type: object
+    Metadata:
+      example:
+        finalizers:
+        - finalizers
+        - finalizers
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        name: name
+        annotations:
+          key: annotations
+        generateName: generateName
+        version: 0
+        deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+        labels:
+          key: labels
+      properties:
+        annotations:
+          additionalProperties:
+            type: string
+          type: object
+        creationTimestamp:
+          format: date-time
+          nullable: true
+          type: string
+        deletionTimestamp:
+          format: date-time
+          nullable: true
+          type: string
+        finalizers:
+          items:
+            nullable: true
+            type: string
+          nullable: true
+          type: array
+          uniqueItems: true
+        generateName:
+          description: The name field will be generated automatically according to
+            the given generateName field
+          type: string
+        labels:
+          additionalProperties:
+            type: string
+          type: object
+        name:
+          description: Metadata name
+          type: string
+        version:
+          format: int64
+          nullable: true
+          type: integer
+      required:
+      - name
+      type: object
+    MoveOperation:
+      properties:
+        from:
+          description: A JSON Pointer path pointing to the location to move/copy from.
+          example: /a/b/c
+          pattern: "^(/[^/~]*(~[01][^/~]*)*)*$"
+          type: string
+        op:
+          enum:
+          - move
+          type: string
+        path:
+          description: A JSON Pointer path pointing to the location to move/copy from.
+          example: /a/b/c
+          pattern: "^(/[^/~]*(~[01][^/~]*)*)*$"
+          type: string
+      required:
+      - from
+      - op
+      - path
+      type: object
+    Notification:
+      example:
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        apiVersion: apiVersion
+        kind: kind
+        spec:
+          lastReadAt: 2000-01-23T04:56:07.000+00:00
+          reason: reason
+          unread: true
+          recipient: recipient
+          title: title
+          htmlContent: htmlContent
+          rawContent: rawContent
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        spec:
+          $ref: '#/components/schemas/NotificationSpec'
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      type: object
+    NotificationList:
+      example:
+        total: 5
+        last: true
+        size: 1
+        totalPages: 5
+        hasPrevious: true
+        hasNext: true
+        page: 6
+        items:
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          apiVersion: apiVersion
+          kind: kind
+          spec:
+            lastReadAt: 2000-01-23T04:56:07.000+00:00
+            reason: reason
+            unread: true
+            recipient: recipient
+            title: title
+            htmlContent: htmlContent
+            rawContent: rawContent
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          apiVersion: apiVersion
+          kind: kind
+          spec:
+            lastReadAt: 2000-01-23T04:56:07.000+00:00
+            reason: reason
+            unread: true
+            recipient: recipient
+            title: title
+            htmlContent: htmlContent
+            rawContent: rawContent
+        first: true
+      properties:
+        first:
+          description: Indicates whether current page is the first page.
+          type: boolean
+        hasNext:
+          description: Indicates whether current page has previous page.
+          type: boolean
+        hasPrevious:
+          description: Indicates whether current page has previous page.
+          type: boolean
+        items:
+          description: A chunk of items.
+          items:
+            $ref: '#/components/schemas/Notification'
+          type: array
+        last:
+          description: Indicates whether current page is the last page.
+          type: boolean
+        page:
+          description: "Page number, starts from 1. If not set or equal to 0, it means\
+            \ no pagination."
+          format: int32
+          type: integer
+        size:
+          description: "Size of each page. If not set or equal to 0, it means no pagination."
+          format: int32
+          type: integer
+        total:
+          description: Total elements.
+          format: int64
+          type: integer
+        totalPages:
+          description: Indicates total pages.
+          format: int64
+          type: integer
+      required:
+      - first
+      - hasNext
+      - hasPrevious
+      - items
+      - last
+      - page
+      - size
+      - total
+      - totalPages
+      type: object
+    NotificationSpec:
+      example:
+        lastReadAt: 2000-01-23T04:56:07.000+00:00
+        reason: reason
+        unread: true
+        recipient: recipient
+        title: title
+        htmlContent: htmlContent
+        rawContent: rawContent
+      properties:
+        htmlContent:
+          type: string
+        lastReadAt:
+          format: date-time
+          type: string
+        rawContent:
+          type: string
+        reason:
+          description: The name of reason
+          minLength: 1
+          type: string
+        recipient:
+          description: The name of user
+          minLength: 1
+          type: string
+        title:
+          minLength: 1
+          type: string
+        unread:
+          type: boolean
+      required:
+      - htmlContent
+      - rawContent
+      - reason
+      - recipient
+      - title
+      type: object
+    NotifierInfo:
+      example:
+        displayName: displayName
+        name: name
+        description: description
+      properties:
+        description:
+          type: string
+        displayName:
+          type: string
+        name:
+          type: string
+      type: object
+    Part:
+      type: object
+    PasswordRequest:
+      example:
+        password: password
+      properties:
+        password:
+          type: string
+      required:
+      - password
+      type: object
+    PatSpec:
+      example:
+        lastUsed: 2000-01-23T04:56:07.000+00:00
+        tokenId: tokenId
+        roles:
+        - roles
+        - roles
+        name: name
+        description: description
+        scopes:
+        - scopes
+        - scopes
+        revoked: true
+        revokesAt: 2000-01-23T04:56:07.000+00:00
+        expiresAt: 2000-01-23T04:56:07.000+00:00
+        username: username
+      properties:
+        description:
+          type: string
+        expiresAt:
+          format: date-time
+          type: string
+        lastUsed:
+          format: date-time
+          type: string
+        name:
+          type: string
+        revoked:
+          type: boolean
+        revokesAt:
+          format: date-time
+          type: string
+        roles:
+          items:
+            type: string
+          type: array
+        scopes:
+          items:
+            type: string
+          type: array
+        tokenId:
+          type: string
+        username:
+          type: string
+      required:
+      - name
+      - tokenId
+      - username
+      type: object
+    PersonalAccessToken:
+      example:
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        apiVersion: apiVersion
+        kind: kind
+        spec:
+          lastUsed: 2000-01-23T04:56:07.000+00:00
+          tokenId: tokenId
+          roles:
+          - roles
+          - roles
+          name: name
+          description: description
+          scopes:
+          - scopes
+          - scopes
+          revoked: true
+          revokesAt: 2000-01-23T04:56:07.000+00:00
+          expiresAt: 2000-01-23T04:56:07.000+00:00
+          username: username
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        spec:
+          $ref: '#/components/schemas/PatSpec'
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      type: object
+    Post:
+      example:
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        apiVersion: apiVersion
+        kind: kind
+        spec:
+          owner: owner
+          template: template
+          publishTime: 2000-01-23T04:56:07.000+00:00
+          pinned: false
+          visible: PUBLIC
+          releaseSnapshot: releaseSnapshot
+          allowComment: true
+          priority: 5
+          title: title
+          baseSnapshot: baseSnapshot
+          headSnapshot: headSnapshot
+          tags:
+          - tags
+          - tags
+          cover: cover
+          deleted: false
+          htmlMetas:
+          - key: htmlMetas
+          - key: htmlMetas
+          publish: false
+          categories:
+          - categories
+          - categories
+          excerpt:
+            raw: raw
+            autoGenerate: true
+          slug: slug
+        status:
+          phase: phase
+          observedVersion: 2
+          inProgress: true
+          hideFromList: true
+          commentsCount: 5
+          lastModifyTime: 2000-01-23T04:56:07.000+00:00
+          contributors:
+          - contributors
+          - contributors
+          conditions:
+          - reason: reason
+            lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+            message: message
+            type: type
+            status: "TRUE"
+          - reason: reason
+            lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+            message: message
+            type: type
+            status: "TRUE"
+          excerpt: excerpt
+          permalink: permalink
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        spec:
+          $ref: '#/components/schemas/PostSpec'
+        status:
+          $ref: '#/components/schemas/PostStatus'
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
+      type: object
+    PostAttachmentRequest:
+      properties:
+        file:
+          format: binary
+          type: string
+        postName:
+          description: Post name.
+          type: string
+        singlePageName:
+          description: Single page name.
+          type: string
+      required:
+      - file
+      type: object
+    PostSpec:
+      example:
+        owner: owner
+        template: template
+        publishTime: 2000-01-23T04:56:07.000+00:00
+        pinned: false
+        visible: PUBLIC
+        releaseSnapshot: releaseSnapshot
+        allowComment: true
+        priority: 5
+        title: title
+        baseSnapshot: baseSnapshot
+        headSnapshot: headSnapshot
+        tags:
+        - tags
+        - tags
+        cover: cover
+        deleted: false
+        htmlMetas:
+        - key: htmlMetas
+        - key: htmlMetas
+        publish: false
+        categories:
+        - categories
+        - categories
+        excerpt:
+          raw: raw
+          autoGenerate: true
+        slug: slug
+      properties:
+        allowComment:
+          default: true
+          type: boolean
+        baseSnapshot:
+          type: string
+        categories:
+          items:
+            type: string
+          type: array
+        cover:
+          type: string
+        deleted:
+          default: false
+          type: boolean
+        excerpt:
+          $ref: '#/components/schemas/Excerpt'
+        headSnapshot:
+          type: string
+        htmlMetas:
+          items:
+            additionalProperties:
+              type: string
+            type: object
+          type: array
+        owner:
+          type: string
+        pinned:
+          default: false
+          type: boolean
+        priority:
+          default: 0
+          format: int32
+          type: integer
+        publish:
+          default: false
+          type: boolean
+        publishTime:
+          format: date-time
+          type: string
+        releaseSnapshot:
+          type: string
+        slug:
+          minLength: 1
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+        template:
+          type: string
+        title:
+          minLength: 1
+          type: string
+        visible:
+          default: PUBLIC
+          enum:
+          - PUBLIC
+          - INTERNAL
+          - PRIVATE
+          type: string
+      required:
+      - allowComment
+      - deleted
+      - excerpt
+      - pinned
+      - priority
+      - publish
+      - slug
+      - title
+      - visible
+      type: object
+    PostStatus:
+      example:
+        phase: phase
+        observedVersion: 2
+        inProgress: true
+        hideFromList: true
+        commentsCount: 5
+        lastModifyTime: 2000-01-23T04:56:07.000+00:00
+        contributors:
+        - contributors
+        - contributors
+        conditions:
+        - reason: reason
+          lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+          message: message
+          type: type
+          status: "TRUE"
+        - reason: reason
+          lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+          message: message
+          type: type
+          status: "TRUE"
+        excerpt: excerpt
+        permalink: permalink
+      properties:
+        commentsCount:
+          format: int32
+          type: integer
+        conditions:
+          items:
+            $ref: '#/components/schemas/Condition'
+          properties:
+            empty:
+              type: boolean
+          type: array
+        contributors:
+          items:
+            type: string
+          type: array
+        excerpt:
+          type: string
+        hideFromList:
+          type: boolean
+        inProgress:
+          type: boolean
+        lastModifyTime:
+          format: date-time
+          type: string
+        observedVersion:
+          format: int64
+          type: integer
+        permalink:
+          type: string
+        phase:
+          type: string
+      type: object
+    ReasonTypeInfo:
+      example:
+        displayName: displayName
+        name: name
+        description: description
+        uiPermissions:
+        - uiPermissions
+        - uiPermissions
+      properties:
+        description:
+          type: string
+        displayName:
+          type: string
+        name:
+          type: string
+        uiPermissions:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+      type: object
+    ReasonTypeNotifierCollectionRequest:
+      example:
+        reasonTypeNotifiers:
+        - notifiers:
+          - notifiers
+          - notifiers
+          reasonType: reasonType
+        - notifiers:
+          - notifiers
+          - notifiers
+          reasonType: reasonType
+      properties:
+        reasonTypeNotifiers:
+          items:
+            $ref: '#/components/schemas/ReasonTypeNotifierRequest'
+          type: array
+      required:
+      - reasonTypeNotifiers
+      type: object
+    ReasonTypeNotifierMatrix:
+      example:
+        reasonTypes:
+        - displayName: displayName
+          name: name
+          description: description
+          uiPermissions:
+          - uiPermissions
+          - uiPermissions
+        - displayName: displayName
+          name: name
+          description: description
+          uiPermissions:
+          - uiPermissions
+          - uiPermissions
+        stateMatrix:
+        - - true
+          - true
+        - - true
+          - true
+        notifiers:
+        - displayName: displayName
+          name: name
+          description: description
+        - displayName: displayName
+          name: name
+          description: description
+      properties:
+        notifiers:
+          items:
+            $ref: '#/components/schemas/NotifierInfo'
+          type: array
+        reasonTypes:
+          items:
+            $ref: '#/components/schemas/ReasonTypeInfo'
+          type: array
+        stateMatrix:
+          items:
+            items:
+              type: boolean
+            type: array
+          type: array
+      type: object
+    ReasonTypeNotifierRequest:
+      example:
+        notifiers:
+        - notifiers
+        - notifiers
+        reasonType: reasonType
+      properties:
+        notifiers:
+          items:
+            type: string
+          type: array
+        reasonType:
+          type: string
+      type: object
+    Ref:
+      description: Extension reference object. The name is mandatory
+      example:
+        kind: kind
+        name: name
+        version: version
+        group: group
+      properties:
+        group:
+          description: Extension group
+          type: string
+        kind:
+          description: Extension kind
+          type: string
+        name:
+          description: Extension name. This field is mandatory
+          type: string
+        version:
+          description: Extension version
+          type: string
+      required:
+      - name
+      type: object
+    RemoveOperation:
+      properties:
+        op:
+          enum:
+          - remove
+          type: string
+        path:
+          description: A JSON Pointer path pointing to the location to move/copy from.
+          example: /a/b/c
+          pattern: "^(/[^/~]*(~[01][^/~]*)*)*$"
+          type: string
+      required:
+      - op
+      - path
+      type: object
+    ReplaceOperation:
+      properties:
+        op:
+          enum:
+          - replace
+          type: string
+        path:
+          description: A JSON Pointer path pointing to the location to move/copy from.
+          example: /a/b/c
+          pattern: "^(/[^/~]*(~[01][^/~]*)*)*$"
+          type: string
+        value:
+          description: Value can be any JSON value
+      required:
+      - op
+      - path
+      - value
+      type: object
+    SnapShotSpec:
+      example:
+        owner: owner
+        rawType: rawType
+        contentPatch: contentPatch
+        lastModifyTime: 2000-01-23T04:56:07.000+00:00
+        rawPatch: rawPatch
+        subjectRef:
+          kind: kind
+          name: name
+          version: version
+          group: group
+        parentSnapshotName: parentSnapshotName
+        contributors:
+        - contributors
+        - contributors
+      properties:
+        contentPatch:
+          type: string
+        contributors:
+          items:
+            type: string
+          type: array
+          uniqueItems: true
+        lastModifyTime:
+          format: date-time
+          type: string
+        owner:
+          minLength: 1
+          type: string
+        parentSnapshotName:
+          type: string
+        rawPatch:
+          type: string
+        rawType:
+          maxLength: 50
+          minLength: 1
+          type: string
+        subjectRef:
+          $ref: '#/components/schemas/Ref'
+      required:
+      - owner
+      - rawType
+      - subjectRef
+      type: object
+    Snapshot:
+      example:
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        apiVersion: apiVersion
+        kind: kind
+        spec:
+          owner: owner
+          rawType: rawType
+          contentPatch: contentPatch
+          lastModifyTime: 2000-01-23T04:56:07.000+00:00
+          rawPatch: rawPatch
+          subjectRef:
+            kind: kind
+            name: name
+            version: version
+            group: group
+          parentSnapshotName: parentSnapshotName
+          contributors:
+          - contributors
+          - contributors
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        spec:
+          $ref: '#/components/schemas/SnapShotSpec'
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
+      type: object
+    Stats:
+      example:
+        totalComment: 9
+        approvedComment: 7
+        visit: 2
+        upvote: 3
+      properties:
+        approvedComment:
+          format: int32
+          type: integer
+        totalComment:
+          format: int32
+          type: integer
+        upvote:
+          format: int32
+          type: integer
+        visit:
+          format: int32
+          type: integer
+      type: object
+    Tag:
+      example:
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        apiVersion: apiVersion
+        kind: kind
+        spec:
+          cover: cover
+          color: color
+          displayName: displayName
+          slug: slug
+        status:
+          observedVersion: 4
+          visiblePostCount: 1
+          postCount: 7
+          permalink: permalink
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        spec:
+          $ref: '#/components/schemas/TagSpec'
+        status:
+          $ref: '#/components/schemas/TagStatus'
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
+      type: object
+    TagSpec:
+      example:
+        cover: cover
+        color: color
+        displayName: displayName
+        slug: slug
+      properties:
+        color:
+          pattern: "^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"
+          type: string
+        cover:
+          type: string
+        displayName:
+          minLength: 1
+          type: string
+        slug:
+          minLength: 1
+          type: string
+      required:
+      - displayName
+      - slug
+      type: object
+    TagStatus:
+      example:
+        observedVersion: 4
+        visiblePostCount: 1
+        postCount: 7
+        permalink: permalink
+      properties:
+        observedVersion:
+          format: int64
+          type: integer
+        permalink:
+          type: string
+        postCount:
+          format: int32
+          type: integer
+        visiblePostCount:
+          format: int32
+          type: integer
+      type: object
+    TestOperation:
+      properties:
+        op:
+          enum:
+          - test
+          type: string
+        path:
+          description: A JSON Pointer path pointing to the location to move/copy from.
+          example: /a/b/c
+          pattern: "^(/[^/~]*(~[01][^/~]*)*)*$"
+          type: string
+        value:
+          description: Value can be any JSON value
+      required:
+      - op
+      - path
+      - value
+      type: object
+    TotpAuthLinkResponse:
+      example:
+        authLink: https://openapi-generator.tech
+        rawSecret: rawSecret
+      properties:
+        authLink:
+          format: uri
+          type: string
+        rawSecret:
+          type: string
+      type: object
+    TotpRequest:
+      example:
+        password: password
+        code: code
+        secret: secret
+      properties:
+        code:
+          type: string
+        password:
+          type: string
+        secret:
+          type: string
+      required:
+      - code
+      - password
+      - secret
+      type: object
+    TwoFactorAuthSettings:
+      example:
+        emailVerified: true
+        available: true
+        totpConfigured: true
+        enabled: true
+      properties:
+        available:
+          type: boolean
+        emailVerified:
+          type: boolean
+        enabled:
+          type: boolean
+        totpConfigured:
+          type: boolean
+      type: object
+    UcUploadRequest:
+      properties:
+        file:
+          format: binary
+          type: string
+        formData:
+          $ref: '#/components/schemas/UcUploadRequest_formData'
+      required:
+      - file
+      type: object
+    UploadFromUrlRequest:
+      example:
+        filename: filename
+        url: http://example.com/aeiou
+      properties:
+        filename:
+          type: string
+        url:
+          format: url
+          type: string
+      required:
+      - url
+      type: object
+    UserConnection:
+      example:
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        apiVersion: apiVersion
+        kind: kind
+        spec:
+          registrationId: registrationId
+          providerUserId: providerUserId
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          username: username
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        spec:
+          $ref: '#/components/schemas/UserConnectionSpec'
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
+      type: object
+    UserConnectionSpec:
+      example:
+        registrationId: registrationId
+        providerUserId: providerUserId
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+        username: username
+      properties:
+        providerUserId:
+          type: string
+        registrationId:
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        username:
+          type: string
+      required:
+      - providerUserId
+      - registrationId
+      - username
+      type: object
+    UserDevice:
+      example:
+        currentDevice: true
+        active: true
+        device:
+          metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          apiVersion: apiVersion
+          kind: kind
+          spec:
+            lastAccessedTime: 2000-01-23T04:56:07.000+00:00
+            lastAuthenticatedTime: 2000-01-23T04:56:07.000+00:00
+            ipAddress: ipAddress
+            principalName: principalName
+            userAgent: userAgent
+            sessionId: sessionId
+            rememberMeSeriesId: rememberMeSeriesId
+          status:
+            os: os
+            browser: browser
+      properties:
+        active:
+          type: boolean
+        currentDevice:
+          type: boolean
+        device:
+          $ref: '#/components/schemas/Device'
+      required:
+      - active
+      - currentDevice
+      - device
+      type: object
+    JsonPatch_inner:
+      oneOf:
+      - $ref: '#/components/schemas/AddOperation'
+      - $ref: '#/components/schemas/ReplaceOperation'
+      - $ref: '#/components/schemas/TestOperation'
+      - $ref: '#/components/schemas/RemoveOperation'
+      - $ref: '#/components/schemas/MoveOperation'
+      - $ref: '#/components/schemas/CopyOperation'
+    UcUploadRequest_formData:
+      additionalProperties:
+        items:
+          $ref: '#/components/schemas/Part'
+        type: array
+      properties:
+        all:
+          additionalProperties:
+            $ref: '#/components/schemas/Part'
+          type: object
+          writeOnly: true
+        empty:
+          type: boolean
+      type: object
+  securitySchemes:
+    basicAuth:
+      scheme: basic
+      type: http
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http

@@ -1,0 +1,6357 @@
+openapi: 3.0.1
+info:
+  title: Halo
+  version: 2.20.18
+servers:
+- description: Generated server url
+  url: http://localhost:8091
+security:
+- basicAuth: []
+  bearerAuth: []
+paths:
+  /apis/api.content.halo.run/v1alpha1/categories:
+    get:
+      description: Lists categories.
+      operationId: queryCategories
+      parameters:
+      - description: Page number. Default is 0.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Size number. Default is 0.
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: "Label selector. e.g.: hidden!=true"
+        explode: true
+        in: query
+        name: labelSelector
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Field selector. e.g.: metadata.name==halo"
+        explode: true
+        in: query
+        name: fieldSelector
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Sorting criteria in the format: property,(asc|desc). Default\
+          \ sort order is ascending. Multiple sort criteria are supported."
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CategoryVoList'
+          description: default response
+      tags:
+      - CategoryV1alpha1Public
+  /apis/api.content.halo.run/v1alpha1/categories/{name}:
+    get:
+      description: Gets category by name.
+      operationId: queryCategoryByName
+      parameters:
+      - description: Category name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CategoryVo'
+          description: default response
+      tags:
+      - CategoryV1alpha1Public
+  /apis/api.content.halo.run/v1alpha1/categories/{name}/posts:
+    get:
+      description: Lists posts by category name.
+      operationId: queryPostsByCategoryName
+      parameters:
+      - description: Category name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Page number. Default is 0.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Size number. Default is 0.
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: "Label selector. e.g.: hidden!=true"
+        explode: true
+        in: query
+        name: labelSelector
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Field selector. e.g.: metadata.name==halo"
+        explode: true
+        in: query
+        name: fieldSelector
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Sorting criteria in the format: property,(asc|desc). Default\
+          \ sort order is ascending. Multiple sort criteria are supported."
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListedPostVoList'
+          description: default response
+      tags:
+      - CategoryV1alpha1Public
+  /apis/api.content.halo.run/v1alpha1/posts:
+    get:
+      description: Lists posts.
+      operationId: queryPosts
+      parameters:
+      - description: Page number. Default is 0.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Size number. Default is 0.
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: "Label selector. e.g.: hidden!=true"
+        explode: true
+        in: query
+        name: labelSelector
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Field selector. e.g.: metadata.name==halo"
+        explode: true
+        in: query
+        name: fieldSelector
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Sorting criteria in the format: property,(asc|desc). Default\
+          \ sort order is ascending. Multiple sort criteria are supported."
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListedPostVoList'
+          description: default response
+      tags:
+      - PostV1alpha1Public
+  /apis/api.content.halo.run/v1alpha1/posts/{name}:
+    get:
+      description: Gets a post by name.
+      operationId: queryPostByName
+      parameters:
+      - description: Post name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PostVo'
+          description: default response
+      tags:
+      - PostV1alpha1Public
+  /apis/api.content.halo.run/v1alpha1/posts/{name}/navigation:
+    get:
+      description: Gets a post navigation by name.
+      operationId: queryPostNavigationByName
+      parameters:
+      - description: Post name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/NavigationPostVo'
+          description: default response
+      tags:
+      - PostV1alpha1Public
+  /apis/api.content.halo.run/v1alpha1/singlepages:
+    get:
+      description: Lists single pages
+      operationId: querySinglePages
+      parameters:
+      - description: Page number. Default is 0.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Size number. Default is 0.
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: "Label selector. e.g.: hidden!=true"
+        explode: true
+        in: query
+        name: labelSelector
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Field selector. e.g.: metadata.name==halo"
+        explode: true
+        in: query
+        name: fieldSelector
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Sorting criteria in the format: property,(asc|desc). Default\
+          \ sort order is ascending. Multiple sort criteria are supported."
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListedSinglePageVoList'
+          description: default response
+      tags:
+      - SinglePageV1alpha1Public
+  /apis/api.content.halo.run/v1alpha1/singlepages/{name}:
+    get:
+      description: Gets single page by name
+      operationId: querySinglePageByName
+      parameters:
+      - description: SinglePage name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SinglePageVo'
+          description: default response
+      tags:
+      - SinglePageV1alpha1Public
+  /apis/api.content.halo.run/v1alpha1/tags:
+    get:
+      description: Lists tags
+      operationId: queryTags
+      parameters:
+      - description: Page number. Default is 0.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Size number. Default is 0.
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: "Label selector. e.g.: hidden!=true"
+        explode: true
+        in: query
+        name: labelSelector
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Field selector. e.g.: metadata.name==halo"
+        explode: true
+        in: query
+        name: fieldSelector
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Sorting criteria in the format: property,(asc|desc). Default\
+          \ sort order is ascending. Multiple sort criteria are supported."
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TagVoList'
+          description: default response
+      tags:
+      - TagV1alpha1Public
+  /apis/api.content.halo.run/v1alpha1/tags/{name}:
+    get:
+      description: Gets tag by name
+      operationId: queryTagByName
+      parameters:
+      - description: Tag name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TagVo'
+          description: default response
+      tags:
+      - TagV1alpha1Public
+  /apis/api.content.halo.run/v1alpha1/tags/{name}/posts:
+    get:
+      description: Lists posts by tag name
+      operationId: queryPostsByTagName
+      parameters:
+      - description: Tag name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Page number. Default is 0.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Size number. Default is 0.
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: "Label selector. e.g.: hidden!=true"
+        explode: true
+        in: query
+        name: labelSelector
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Field selector. e.g.: metadata.name==halo"
+        explode: true
+        in: query
+        name: fieldSelector
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: "Sorting criteria in the format: property,(asc|desc). Default\
+          \ sort order is ascending. Multiple sort criteria are supported."
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ListedPostVo'
+          description: default response
+      tags:
+      - TagV1alpha1Public
+  /apis/api.halo.run/v1alpha1/comments:
+    get:
+      description: List comments.
+      operationId: ListComments_1
+      parameters:
+      - description: Page number. Default is 0.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Size number. Default is 0.
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: "Sorting criteria in the format: property,(asc|desc). Default\
+          \ sort order is ascending. Multiple sort criteria are supported."
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - description: The comment subject group.
+        explode: true
+        in: query
+        name: group
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The comment subject version.
+        explode: true
+        in: query
+        name: version
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: The comment subject kind.
+        explode: true
+        in: query
+        name: kind
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: The comment subject name.
+        explode: true
+        in: query
+        name: name
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Whether to include replies. Default is false.
+        explode: true
+        in: query
+        name: withReplies
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: "Reply size of the comment, default is 10, only works when withReplies\
+          \ is true."
+        explode: true
+        in: query
+        name: replySize
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CommentWithReplyVoList'
+          description: default response
+      tags:
+      - CommentV1alpha1Public
+    post:
+      description: Create a comment.
+      operationId: CreateComment_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentRequest'
+        required: true
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Comment'
+          description: default response
+      tags:
+      - CommentV1alpha1Public
+  /apis/api.halo.run/v1alpha1/comments/{name}:
+    get:
+      description: Get a comment.
+      operationId: GetComment
+      parameters:
+      - explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CommentVoList'
+          description: default response
+      tags:
+      - CommentV1alpha1Public
+  /apis/api.halo.run/v1alpha1/comments/{name}/reply:
+    get:
+      description: List comment replies.
+      operationId: ListCommentReplies
+      parameters:
+      - explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Page number. Default is 0.
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Size number. Default is 0.
+        explode: true
+        in: query
+        name: size
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ReplyVoList'
+          description: default response
+      tags:
+      - CommentV1alpha1Public
+    post:
+      description: Create a reply.
+      operationId: CreateReply_1
+      parameters:
+      - explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplyRequest'
+        required: true
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Reply'
+          description: default response
+      tags:
+      - CommentV1alpha1Public
+  /apis/api.halo.run/v1alpha1/indices/-/search:
+    post:
+      description: Search indices.
+      operationId: IndicesSearch
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/SearchOption'
+        description: "Please note that the \"filterPublished\", \"filterExposed\"\
+          \ and \"filterRecycled\" fields are ignored in this endpoint."
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SearchResult'
+          description: default response
+      tags:
+      - IndexV1alpha1Public
+  /apis/api.halo.run/v1alpha1/indices/post:
+    get:
+      deprecated: true
+      description: "Search posts with fuzzy query. This method is deprecated, please\
+        \ use POST /indices/-/search instead."
+      operationId: SearchPost
+      parameters:
+      - description: Keyword to search
+        explode: true
+        in: query
+        name: keyword
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Limit of search results
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          format: int32
+          type: integer
+        style: form
+      - description: Highlight pre tag
+        explode: true
+        in: query
+        name: highlightPreTag
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Highlight post tag
+        explode: true
+        in: query
+        name: highlightPostTag
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SearchResult'
+          description: default response
+      tags:
+      - IndexV1alpha1Public
+  /apis/api.halo.run/v1alpha1/menus/-:
+    get:
+      description: Gets primary menu.
+      operationId: queryPrimaryMenu
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MenuVo'
+          description: default response
+      tags:
+      - MenuV1alpha1Public
+  /apis/api.halo.run/v1alpha1/menus/{name}:
+    get:
+      description: Gets menu by name.
+      operationId: queryMenuByName
+      parameters:
+      - description: Menu name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MenuVo'
+          description: default response
+      tags:
+      - MenuV1alpha1Public
+  /apis/api.halo.run/v1alpha1/stats/-:
+    get:
+      description: Gets site stats
+      operationId: queryStats
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/SiteStatsVo'
+          description: default response
+      tags:
+      - SystemV1alpha1Public
+  /apis/api.halo.run/v1alpha1/trackers/counter:
+    post:
+      description: Count an extension resource visits.
+      operationId: count
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CounterRequest'
+        required: true
+      responses:
+        default:
+          content: {}
+          description: default response
+      tags:
+      - MetricsV1alpha1Public
+  /apis/api.halo.run/v1alpha1/trackers/downvote:
+    post:
+      description: Downvote an extension resource.
+      operationId: downvote
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoteRequest'
+        required: true
+      responses:
+        default:
+          content: {}
+          description: default response
+      tags:
+      - MetricsV1alpha1Public
+  /apis/api.halo.run/v1alpha1/trackers/upvote:
+    post:
+      description: Upvote an extension resource.
+      operationId: upvote
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoteRequest'
+        required: true
+      responses:
+        default:
+          content: {}
+          description: default response
+      tags:
+      - MetricsV1alpha1Public
+  /apis/api.notification.halo.run/v1alpha1/subscriptions/{name}/unsubscribe:
+    get:
+      description: Unsubscribe a subscription
+      operationId: Unsubscribe
+      parameters:
+      - description: Subscription name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Unsubscribe token
+        explode: true
+        in: query
+        name: token
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                type: string
+          description: default response
+      tags:
+      - NotificationV1alpha1Public
+  /apis/api.plugin.halo.run/v1alpha1/plugins/{name}/available:
+    get:
+      description: Gets plugin available by name.
+      operationId: queryPluginAvailableByName
+      parameters:
+      - description: Plugin name
+        explode: false
+        in: path
+        name: name
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                type: boolean
+          description: default response
+      tags:
+      - PluginV1alpha1Public
+  /apis/api.storage.halo.run/v1alpha1/thumbnails/-/via-uri:
+    get:
+      description: Get thumbnail by URI
+      operationId: GetThumbnailByUri
+      parameters:
+      - description: The URI of the image
+        explode: true
+        in: query
+        name: uri
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: "The size of the thumbnail,available values are s,m,l,xl"
+        explode: true
+        in: query
+        name: size
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        default:
+          content:
+            '*/*':
+              schema:
+                format: binary
+                type: string
+          description: default response
+      tags:
+      - ThumbnailV1alpha1Public
+components:
+  schemas:
+    AddOperation:
+      properties:
+        op:
+          enum:
+          - add
+          type: string
+        path:
+          description: A JSON Pointer path pointing to the location to move/copy from.
+          example: /a/b/c
+          pattern: "^(/[^/~]*(~[01][^/~]*)*)*$"
+          type: string
+        value:
+          description: Value can be any JSON value
+      required:
+      - op
+      - path
+      - value
+      type: object
+    CategorySpec:
+      example:
+        cover: cover
+        template: template
+        children:
+        - children
+        - children
+        hideFromList: true
+        displayName: displayName
+        description: description
+        preventParentPostCascadeQuery: true
+        priority: 1
+        postTemplate: postTemplate
+        slug: slug
+      properties:
+        children:
+          items:
+            type: string
+          type: array
+        cover:
+          type: string
+        description:
+          type: string
+        displayName:
+          minLength: 1
+          type: string
+        hideFromList:
+          type: boolean
+        postTemplate:
+          maxLength: 255
+          type: string
+        preventParentPostCascadeQuery:
+          type: boolean
+        priority:
+          default: 0
+          format: int32
+          type: integer
+        slug:
+          minLength: 1
+          type: string
+        template:
+          maxLength: 255
+          type: string
+      required:
+      - displayName
+      - priority
+      - slug
+      type: object
+    CategoryStatus:
+      example:
+        visiblePostCount: 5
+        postCount: 5
+        permalink: permalink
+      properties:
+        permalink:
+          type: string
+        postCount:
+          format: int32
+          type: integer
+        visiblePostCount:
+          format: int32
+          type: integer
+      type: object
+    CategoryVo:
+      example:
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        postCount: 6
+        spec:
+          cover: cover
+          template: template
+          children:
+          - children
+          - children
+          hideFromList: true
+          displayName: displayName
+          description: description
+          preventParentPostCascadeQuery: true
+          priority: 1
+          postTemplate: postTemplate
+          slug: slug
+        status:
+          visiblePostCount: 5
+          postCount: 5
+          permalink: permalink
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        postCount:
+          format: int32
+          type: integer
+        spec:
+          $ref: '#/components/schemas/CategorySpec'
+        status:
+          $ref: '#/components/schemas/CategoryStatus'
+      required:
+      - metadata
+      type: object
+    CategoryVoList:
+      example:
+        total: 9
+        last: true
+        size: 7
+        totalPages: 3
+        hasPrevious: true
+        hasNext: true
+        page: 2
+        items:
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          postCount: 6
+          spec:
+            cover: cover
+            template: template
+            children:
+            - children
+            - children
+            hideFromList: true
+            displayName: displayName
+            description: description
+            preventParentPostCascadeQuery: true
+            priority: 1
+            postTemplate: postTemplate
+            slug: slug
+          status:
+            visiblePostCount: 5
+            postCount: 5
+            permalink: permalink
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          postCount: 6
+          spec:
+            cover: cover
+            template: template
+            children:
+            - children
+            - children
+            hideFromList: true
+            displayName: displayName
+            description: description
+            preventParentPostCascadeQuery: true
+            priority: 1
+            postTemplate: postTemplate
+            slug: slug
+          status:
+            visiblePostCount: 5
+            postCount: 5
+            permalink: permalink
+        first: true
+      properties:
+        first:
+          description: Indicates whether current page is the first page.
+          type: boolean
+        hasNext:
+          description: Indicates whether current page has previous page.
+          type: boolean
+        hasPrevious:
+          description: Indicates whether current page has previous page.
+          type: boolean
+        items:
+          description: A chunk of items.
+          items:
+            $ref: '#/components/schemas/CategoryVo'
+          type: array
+        last:
+          description: Indicates whether current page is the last page.
+          type: boolean
+        page:
+          description: "Page number, starts from 1. If not set or equal to 0, it means\
+            \ no pagination."
+          format: int32
+          type: integer
+        size:
+          description: "Size of each page. If not set or equal to 0, it means no pagination."
+          format: int32
+          type: integer
+        total:
+          description: Total elements.
+          format: int64
+          type: integer
+        totalPages:
+          description: Indicates total pages.
+          format: int64
+          type: integer
+      required:
+      - first
+      - hasNext
+      - hasPrevious
+      - items
+      - last
+      - page
+      - size
+      - total
+      - totalPages
+      type: object
+    Comment:
+      example:
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        apiVersion: apiVersion
+        kind: kind
+        spec:
+          owner:
+            displayName: displayName
+            kind: kind
+            name: name
+            annotations:
+              key: annotations
+          creationTime: 2000-01-23T04:56:07.000+00:00
+          hidden: false
+          lastReadTime: 2000-01-23T04:56:07.000+00:00
+          ipAddress: ipAddress
+          raw: raw
+          subjectRef:
+            kind: kind
+            name: name
+            version: version
+            group: group
+          userAgent: userAgent
+          priority: 7
+          content: content
+          approved: false
+          top: false
+          approvedTime: 2000-01-23T04:56:07.000+00:00
+          allowNotification: true
+        status:
+          observedVersion: 9
+          visibleReplyCount: 4
+          replyCount: 3
+          unreadReplyCount: 2
+          lastReplyTime: 2000-01-23T04:56:07.000+00:00
+          hasNewReply: true
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        spec:
+          $ref: '#/components/schemas/CommentSpec'
+        status:
+          $ref: '#/components/schemas/CommentStatus'
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
+      type: object
+    CommentEmailOwner:
+      example:
+        website: website
+        displayName: displayName
+        avatar: avatar
+        email: email
+      properties:
+        avatar:
+          type: string
+        displayName:
+          type: string
+        email:
+          type: string
+        website:
+          type: string
+      type: object
+    CommentOwner:
+      example:
+        displayName: displayName
+        kind: kind
+        name: name
+        annotations:
+          key: annotations
+      properties:
+        annotations:
+          additionalProperties:
+            type: string
+          type: object
+        displayName:
+          type: string
+        kind:
+          minLength: 1
+          type: string
+        name:
+          maxLength: 64
+          type: string
+      required:
+      - kind
+      - name
+      type: object
+    CommentRequest:
+      example:
+        owner:
+          website: website
+          displayName: displayName
+          avatar: avatar
+          email: email
+        raw: raw
+        subjectRef:
+          kind: kind
+          name: name
+          version: version
+          group: group
+        allowNotification: false
+        content: content
+      properties:
+        allowNotification:
+          default: false
+          type: boolean
+        content:
+          minLength: 1
+          type: string
+        owner:
+          $ref: '#/components/schemas/CommentEmailOwner'
+        raw:
+          minLength: 1
+          type: string
+        subjectRef:
+          $ref: '#/components/schemas/Ref'
+      required:
+      - content
+      - raw
+      - subjectRef
+      type: object
+    CommentSpec:
+      example:
+        owner:
+          displayName: displayName
+          kind: kind
+          name: name
+          annotations:
+            key: annotations
+        creationTime: 2000-01-23T04:56:07.000+00:00
+        hidden: false
+        lastReadTime: 2000-01-23T04:56:07.000+00:00
+        ipAddress: ipAddress
+        raw: raw
+        subjectRef:
+          kind: kind
+          name: name
+          version: version
+          group: group
+        userAgent: userAgent
+        priority: 7
+        content: content
+        approved: false
+        top: false
+        approvedTime: 2000-01-23T04:56:07.000+00:00
+        allowNotification: true
+      properties:
+        allowNotification:
+          default: true
+          type: boolean
+        approved:
+          default: false
+          type: boolean
+        approvedTime:
+          format: date-time
+          type: string
+        content:
+          minLength: 1
+          type: string
+        creationTime:
+          format: date-time
+          type: string
+        hidden:
+          default: false
+          type: boolean
+        ipAddress:
+          type: string
+        lastReadTime:
+          format: date-time
+          type: string
+        owner:
+          $ref: '#/components/schemas/CommentOwner'
+        priority:
+          default: 0
+          format: int32
+          type: integer
+        raw:
+          minLength: 1
+          type: string
+        subjectRef:
+          $ref: '#/components/schemas/Ref'
+        top:
+          default: false
+          type: boolean
+        userAgent:
+          type: string
+      required:
+      - allowNotification
+      - approved
+      - content
+      - hidden
+      - owner
+      - priority
+      - raw
+      - subjectRef
+      - top
+      type: object
+    CommentStatsVo:
+      example:
+        upvote: 6
+      properties:
+        upvote:
+          format: int32
+          type: integer
+      type: object
+    CommentStatus:
+      example:
+        observedVersion: 9
+        visibleReplyCount: 4
+        replyCount: 3
+        unreadReplyCount: 2
+        lastReplyTime: 2000-01-23T04:56:07.000+00:00
+        hasNewReply: true
+      properties:
+        hasNewReply:
+          type: boolean
+        lastReplyTime:
+          format: date-time
+          type: string
+        observedVersion:
+          format: int64
+          type: integer
+        replyCount:
+          format: int32
+          type: integer
+        unreadReplyCount:
+          format: int32
+          type: integer
+        visibleReplyCount:
+          format: int32
+          type: integer
+      type: object
+    CommentVo:
+      description: A chunk of items.
+      example:
+        owner:
+          displayName: displayName
+          kind: kind
+          name: name
+          avatar: avatar
+          email: email
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        stats:
+          upvote: 6
+        spec:
+          owner:
+            displayName: displayName
+            kind: kind
+            name: name
+            annotations:
+              key: annotations
+          creationTime: 2000-01-23T04:56:07.000+00:00
+          hidden: false
+          lastReadTime: 2000-01-23T04:56:07.000+00:00
+          ipAddress: ipAddress
+          raw: raw
+          subjectRef:
+            kind: kind
+            name: name
+            version: version
+            group: group
+          userAgent: userAgent
+          priority: 7
+          content: content
+          approved: false
+          top: false
+          approvedTime: 2000-01-23T04:56:07.000+00:00
+          allowNotification: true
+        status:
+          observedVersion: 9
+          visibleReplyCount: 4
+          replyCount: 3
+          unreadReplyCount: 2
+          lastReplyTime: 2000-01-23T04:56:07.000+00:00
+          hasNewReply: true
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        owner:
+          $ref: '#/components/schemas/OwnerInfo'
+        spec:
+          $ref: '#/components/schemas/CommentSpec'
+        stats:
+          $ref: '#/components/schemas/CommentStatsVo'
+        status:
+          $ref: '#/components/schemas/CommentStatus'
+      required:
+      - metadata
+      - owner
+      - spec
+      - stats
+      type: object
+    CommentVoList:
+      example:
+        total: 1
+        last: true
+        size: 6
+        totalPages: 5
+        hasPrevious: true
+        hasNext: true
+        page: 0
+        items:
+        - owner:
+            displayName: displayName
+            kind: kind
+            name: name
+            avatar: avatar
+            email: email
+          metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          stats:
+            upvote: 6
+          spec:
+            owner:
+              displayName: displayName
+              kind: kind
+              name: name
+              annotations:
+                key: annotations
+            creationTime: 2000-01-23T04:56:07.000+00:00
+            hidden: false
+            lastReadTime: 2000-01-23T04:56:07.000+00:00
+            ipAddress: ipAddress
+            raw: raw
+            subjectRef:
+              kind: kind
+              name: name
+              version: version
+              group: group
+            userAgent: userAgent
+            priority: 7
+            content: content
+            approved: false
+            top: false
+            approvedTime: 2000-01-23T04:56:07.000+00:00
+            allowNotification: true
+          status:
+            observedVersion: 9
+            visibleReplyCount: 4
+            replyCount: 3
+            unreadReplyCount: 2
+            lastReplyTime: 2000-01-23T04:56:07.000+00:00
+            hasNewReply: true
+        - owner:
+            displayName: displayName
+            kind: kind
+            name: name
+            avatar: avatar
+            email: email
+          metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          stats:
+            upvote: 6
+          spec:
+            owner:
+              displayName: displayName
+              kind: kind
+              name: name
+              annotations:
+                key: annotations
+            creationTime: 2000-01-23T04:56:07.000+00:00
+            hidden: false
+            lastReadTime: 2000-01-23T04:56:07.000+00:00
+            ipAddress: ipAddress
+            raw: raw
+            subjectRef:
+              kind: kind
+              name: name
+              version: version
+              group: group
+            userAgent: userAgent
+            priority: 7
+            content: content
+            approved: false
+            top: false
+            approvedTime: 2000-01-23T04:56:07.000+00:00
+            allowNotification: true
+          status:
+            observedVersion: 9
+            visibleReplyCount: 4
+            replyCount: 3
+            unreadReplyCount: 2
+            lastReplyTime: 2000-01-23T04:56:07.000+00:00
+            hasNewReply: true
+        first: true
+      properties:
+        first:
+          description: Indicates whether current page is the first page.
+          type: boolean
+        hasNext:
+          description: Indicates whether current page has previous page.
+          type: boolean
+        hasPrevious:
+          description: Indicates whether current page has previous page.
+          type: boolean
+        items:
+          description: A chunk of items.
+          items:
+            $ref: '#/components/schemas/CommentVo'
+          type: array
+        last:
+          description: Indicates whether current page is the last page.
+          type: boolean
+        page:
+          description: "Page number, starts from 1. If not set or equal to 0, it means\
+            \ no pagination."
+          format: int32
+          type: integer
+        size:
+          description: "Size of each page. If not set or equal to 0, it means no pagination."
+          format: int32
+          type: integer
+        total:
+          description: Total elements.
+          format: int64
+          type: integer
+        totalPages:
+          description: Indicates total pages.
+          format: int64
+          type: integer
+      required:
+      - first
+      - hasNext
+      - hasPrevious
+      - items
+      - last
+      - page
+      - size
+      - total
+      - totalPages
+      type: object
+    CommentWithReplyVo:
+      description: A chunk of items.
+      example:
+        owner:
+          displayName: displayName
+          kind: kind
+          name: name
+          avatar: avatar
+          email: email
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        replies:
+          total: 5
+          last: true
+          size: 5
+          totalPages: 2
+          hasPrevious: true
+          hasNext: true
+          page: 1
+          items:
+          - owner:
+              displayName: displayName
+              kind: kind
+              name: name
+              avatar: avatar
+              email: email
+            metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            stats:
+              upvote: 6
+            spec:
+              owner:
+                displayName: displayName
+                kind: kind
+                name: name
+                annotations:
+                  key: annotations
+              creationTime: 2000-01-23T04:56:07.000+00:00
+              hidden: false
+              ipAddress: ipAddress
+              raw: raw
+              userAgent: userAgent
+              priority: 0
+              content: content
+              approved: false
+              commentName: commentName
+              top: false
+              approvedTime: 2000-01-23T04:56:07.000+00:00
+              allowNotification: true
+              quoteReply: quoteReply
+          - owner:
+              displayName: displayName
+              kind: kind
+              name: name
+              avatar: avatar
+              email: email
+            metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            stats:
+              upvote: 6
+            spec:
+              owner:
+                displayName: displayName
+                kind: kind
+                name: name
+                annotations:
+                  key: annotations
+              creationTime: 2000-01-23T04:56:07.000+00:00
+              hidden: false
+              ipAddress: ipAddress
+              raw: raw
+              userAgent: userAgent
+              priority: 0
+              content: content
+              approved: false
+              commentName: commentName
+              top: false
+              approvedTime: 2000-01-23T04:56:07.000+00:00
+              allowNotification: true
+              quoteReply: quoteReply
+          first: true
+        stats:
+          upvote: 6
+        spec:
+          owner:
+            displayName: displayName
+            kind: kind
+            name: name
+            annotations:
+              key: annotations
+          creationTime: 2000-01-23T04:56:07.000+00:00
+          hidden: false
+          lastReadTime: 2000-01-23T04:56:07.000+00:00
+          ipAddress: ipAddress
+          raw: raw
+          subjectRef:
+            kind: kind
+            name: name
+            version: version
+            group: group
+          userAgent: userAgent
+          priority: 7
+          content: content
+          approved: false
+          top: false
+          approvedTime: 2000-01-23T04:56:07.000+00:00
+          allowNotification: true
+        status:
+          observedVersion: 9
+          visibleReplyCount: 4
+          replyCount: 3
+          unreadReplyCount: 2
+          lastReplyTime: 2000-01-23T04:56:07.000+00:00
+          hasNewReply: true
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        owner:
+          $ref: '#/components/schemas/OwnerInfo'
+        replies:
+          $ref: '#/components/schemas/ListResultReplyVo'
+        spec:
+          $ref: '#/components/schemas/CommentSpec'
+        stats:
+          $ref: '#/components/schemas/CommentStatsVo'
+        status:
+          $ref: '#/components/schemas/CommentStatus'
+      required:
+      - metadata
+      - owner
+      - spec
+      - stats
+      type: object
+    CommentWithReplyVoList:
+      example:
+        total: 1
+        last: true
+        size: 1
+        totalPages: 1
+        hasPrevious: true
+        hasNext: true
+        page: 7
+        items:
+        - owner:
+            displayName: displayName
+            kind: kind
+            name: name
+            avatar: avatar
+            email: email
+          metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          replies:
+            total: 5
+            last: true
+            size: 5
+            totalPages: 2
+            hasPrevious: true
+            hasNext: true
+            page: 1
+            items:
+            - owner:
+                displayName: displayName
+                kind: kind
+                name: name
+                avatar: avatar
+                email: email
+              metadata:
+                finalizers:
+                - finalizers
+                - finalizers
+                creationTimestamp: 2000-01-23T04:56:07.000+00:00
+                name: name
+                annotations:
+                  key: annotations
+                generateName: generateName
+                version: 0
+                deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+                labels:
+                  key: labels
+              stats:
+                upvote: 6
+              spec:
+                owner:
+                  displayName: displayName
+                  kind: kind
+                  name: name
+                  annotations:
+                    key: annotations
+                creationTime: 2000-01-23T04:56:07.000+00:00
+                hidden: false
+                ipAddress: ipAddress
+                raw: raw
+                userAgent: userAgent
+                priority: 0
+                content: content
+                approved: false
+                commentName: commentName
+                top: false
+                approvedTime: 2000-01-23T04:56:07.000+00:00
+                allowNotification: true
+                quoteReply: quoteReply
+            - owner:
+                displayName: displayName
+                kind: kind
+                name: name
+                avatar: avatar
+                email: email
+              metadata:
+                finalizers:
+                - finalizers
+                - finalizers
+                creationTimestamp: 2000-01-23T04:56:07.000+00:00
+                name: name
+                annotations:
+                  key: annotations
+                generateName: generateName
+                version: 0
+                deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+                labels:
+                  key: labels
+              stats:
+                upvote: 6
+              spec:
+                owner:
+                  displayName: displayName
+                  kind: kind
+                  name: name
+                  annotations:
+                    key: annotations
+                creationTime: 2000-01-23T04:56:07.000+00:00
+                hidden: false
+                ipAddress: ipAddress
+                raw: raw
+                userAgent: userAgent
+                priority: 0
+                content: content
+                approved: false
+                commentName: commentName
+                top: false
+                approvedTime: 2000-01-23T04:56:07.000+00:00
+                allowNotification: true
+                quoteReply: quoteReply
+            first: true
+          stats:
+            upvote: 6
+          spec:
+            owner:
+              displayName: displayName
+              kind: kind
+              name: name
+              annotations:
+                key: annotations
+            creationTime: 2000-01-23T04:56:07.000+00:00
+            hidden: false
+            lastReadTime: 2000-01-23T04:56:07.000+00:00
+            ipAddress: ipAddress
+            raw: raw
+            subjectRef:
+              kind: kind
+              name: name
+              version: version
+              group: group
+            userAgent: userAgent
+            priority: 7
+            content: content
+            approved: false
+            top: false
+            approvedTime: 2000-01-23T04:56:07.000+00:00
+            allowNotification: true
+          status:
+            observedVersion: 9
+            visibleReplyCount: 4
+            replyCount: 3
+            unreadReplyCount: 2
+            lastReplyTime: 2000-01-23T04:56:07.000+00:00
+            hasNewReply: true
+        - owner:
+            displayName: displayName
+            kind: kind
+            name: name
+            avatar: avatar
+            email: email
+          metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          replies:
+            total: 5
+            last: true
+            size: 5
+            totalPages: 2
+            hasPrevious: true
+            hasNext: true
+            page: 1
+            items:
+            - owner:
+                displayName: displayName
+                kind: kind
+                name: name
+                avatar: avatar
+                email: email
+              metadata:
+                finalizers:
+                - finalizers
+                - finalizers
+                creationTimestamp: 2000-01-23T04:56:07.000+00:00
+                name: name
+                annotations:
+                  key: annotations
+                generateName: generateName
+                version: 0
+                deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+                labels:
+                  key: labels
+              stats:
+                upvote: 6
+              spec:
+                owner:
+                  displayName: displayName
+                  kind: kind
+                  name: name
+                  annotations:
+                    key: annotations
+                creationTime: 2000-01-23T04:56:07.000+00:00
+                hidden: false
+                ipAddress: ipAddress
+                raw: raw
+                userAgent: userAgent
+                priority: 0
+                content: content
+                approved: false
+                commentName: commentName
+                top: false
+                approvedTime: 2000-01-23T04:56:07.000+00:00
+                allowNotification: true
+                quoteReply: quoteReply
+            - owner:
+                displayName: displayName
+                kind: kind
+                name: name
+                avatar: avatar
+                email: email
+              metadata:
+                finalizers:
+                - finalizers
+                - finalizers
+                creationTimestamp: 2000-01-23T04:56:07.000+00:00
+                name: name
+                annotations:
+                  key: annotations
+                generateName: generateName
+                version: 0
+                deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+                labels:
+                  key: labels
+              stats:
+                upvote: 6
+              spec:
+                owner:
+                  displayName: displayName
+                  kind: kind
+                  name: name
+                  annotations:
+                    key: annotations
+                creationTime: 2000-01-23T04:56:07.000+00:00
+                hidden: false
+                ipAddress: ipAddress
+                raw: raw
+                userAgent: userAgent
+                priority: 0
+                content: content
+                approved: false
+                commentName: commentName
+                top: false
+                approvedTime: 2000-01-23T04:56:07.000+00:00
+                allowNotification: true
+                quoteReply: quoteReply
+            first: true
+          stats:
+            upvote: 6
+          spec:
+            owner:
+              displayName: displayName
+              kind: kind
+              name: name
+              annotations:
+                key: annotations
+            creationTime: 2000-01-23T04:56:07.000+00:00
+            hidden: false
+            lastReadTime: 2000-01-23T04:56:07.000+00:00
+            ipAddress: ipAddress
+            raw: raw
+            subjectRef:
+              kind: kind
+              name: name
+              version: version
+              group: group
+            userAgent: userAgent
+            priority: 7
+            content: content
+            approved: false
+            top: false
+            approvedTime: 2000-01-23T04:56:07.000+00:00
+            allowNotification: true
+          status:
+            observedVersion: 9
+            visibleReplyCount: 4
+            replyCount: 3
+            unreadReplyCount: 2
+            lastReplyTime: 2000-01-23T04:56:07.000+00:00
+            hasNewReply: true
+        first: true
+      properties:
+        first:
+          description: Indicates whether current page is the first page.
+          type: boolean
+        hasNext:
+          description: Indicates whether current page has previous page.
+          type: boolean
+        hasPrevious:
+          description: Indicates whether current page has previous page.
+          type: boolean
+        items:
+          description: A chunk of items.
+          items:
+            $ref: '#/components/schemas/CommentWithReplyVo'
+          type: array
+        last:
+          description: Indicates whether current page is the last page.
+          type: boolean
+        page:
+          description: "Page number, starts from 1. If not set or equal to 0, it means\
+            \ no pagination."
+          format: int32
+          type: integer
+        size:
+          description: "Size of each page. If not set or equal to 0, it means no pagination."
+          format: int32
+          type: integer
+        total:
+          description: Total elements.
+          format: int64
+          type: integer
+        totalPages:
+          description: Indicates total pages.
+          format: int64
+          type: integer
+      required:
+      - first
+      - hasNext
+      - hasPrevious
+      - items
+      - last
+      - page
+      - size
+      - total
+      - totalPages
+      type: object
+    Condition:
+      example:
+        reason: reason
+        lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+        message: message
+        type: type
+        status: "TRUE"
+      properties:
+        lastTransitionTime:
+          format: date-time
+          type: string
+        message:
+          maxLength: 32768
+          type: string
+        reason:
+          maxLength: 1024
+          pattern: "^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$"
+          type: string
+        status:
+          enum:
+          - "TRUE"
+          - "FALSE"
+          - UNKNOWN
+          type: string
+        type:
+          maxLength: 316
+          pattern: "^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*/)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$"
+          type: string
+      required:
+      - lastTransitionTime
+      - status
+      - type
+      type: object
+    ContentVo:
+      example:
+        raw: raw
+        content: content
+      properties:
+        content:
+          type: string
+        raw:
+          type: string
+      type: object
+    ContributorVo:
+      example:
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        displayName: displayName
+        name: name
+        bio: bio
+        avatar: avatar
+        permalink: permalink
+      properties:
+        avatar:
+          type: string
+        bio:
+          type: string
+        displayName:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        name:
+          type: string
+        permalink:
+          type: string
+      required:
+      - metadata
+      type: object
+    CopyOperation:
+      properties:
+        from:
+          description: A JSON Pointer path pointing to the location to move/copy from.
+          example: /a/b/c
+          pattern: "^(/[^/~]*(~[01][^/~]*)*)*$"
+          type: string
+        op:
+          enum:
+          - copy
+          type: string
+        path:
+          description: A JSON Pointer path pointing to the location to move/copy from.
+          example: /a/b/c
+          pattern: "^(/[^/~]*(~[01][^/~]*)*)*$"
+          type: string
+      required:
+      - from
+      - op
+      - path
+      type: object
+    CounterRequest:
+      example:
+        referrer: referrer
+        hostname: hostname
+        plural: plural
+        name: name
+        screen: screen
+        language: language
+        group: group
+      properties:
+        group:
+          type: string
+        hostname:
+          type: string
+        language:
+          type: string
+        name:
+          type: string
+        plural:
+          type: string
+        referrer:
+          type: string
+        screen:
+          type: string
+      type: object
+    Excerpt:
+      example:
+        raw: raw
+        autoGenerate: true
+      properties:
+        autoGenerate:
+          default: true
+          type: boolean
+        raw:
+          type: string
+      required:
+      - autoGenerate
+      type: object
+    HaloDocument:
+      example:
+        annotations:
+          key: annotations
+        description: description
+        metadataName: metadataName
+        published: true
+        title: title
+        type: type
+        content: content
+        updateTimestamp: 2000-01-23T04:56:07.000+00:00
+        tags:
+        - tags
+        - tags
+        recycled: true
+        ownerName: ownerName
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        exposed: true
+        categories:
+        - categories
+        - categories
+        id: id
+        permalink: permalink
+      properties:
+        annotations:
+          additionalProperties:
+            type: string
+          type: object
+        categories:
+          items:
+            type: string
+          type: array
+        content:
+          type: string
+        creationTimestamp:
+          format: date-time
+          type: string
+        description:
+          type: string
+        exposed:
+          type: boolean
+        id:
+          type: string
+        metadataName:
+          type: string
+        ownerName:
+          type: string
+        permalink:
+          type: string
+        published:
+          type: boolean
+        recycled:
+          type: boolean
+        tags:
+          items:
+            type: string
+          type: array
+        title:
+          type: string
+        type:
+          type: string
+        updateTimestamp:
+          format: date-time
+          type: string
+      required:
+      - content
+      - id
+      - metadataName
+      - ownerName
+      - permalink
+      - title
+      - type
+      type: object
+    JsonPatch:
+      description: JSON schema for JSONPatch operations
+      items:
+        $ref: '#/components/schemas/JsonPatch_inner'
+      minItems: 1
+      type: array
+      uniqueItems: true
+    ListResultReplyVo:
+      example:
+        total: 5
+        last: true
+        size: 5
+        totalPages: 2
+        hasPrevious: true
+        hasNext: true
+        page: 1
+        items:
+        - owner:
+            displayName: displayName
+            kind: kind
+            name: name
+            avatar: avatar
+            email: email
+          metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          stats:
+            upvote: 6
+          spec:
+            owner:
+              displayName: displayName
+              kind: kind
+              name: name
+              annotations:
+                key: annotations
+            creationTime: 2000-01-23T04:56:07.000+00:00
+            hidden: false
+            ipAddress: ipAddress
+            raw: raw
+            userAgent: userAgent
+            priority: 0
+            content: content
+            approved: false
+            commentName: commentName
+            top: false
+            approvedTime: 2000-01-23T04:56:07.000+00:00
+            allowNotification: true
+            quoteReply: quoteReply
+        - owner:
+            displayName: displayName
+            kind: kind
+            name: name
+            avatar: avatar
+            email: email
+          metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          stats:
+            upvote: 6
+          spec:
+            owner:
+              displayName: displayName
+              kind: kind
+              name: name
+              annotations:
+                key: annotations
+            creationTime: 2000-01-23T04:56:07.000+00:00
+            hidden: false
+            ipAddress: ipAddress
+            raw: raw
+            userAgent: userAgent
+            priority: 0
+            content: content
+            approved: false
+            commentName: commentName
+            top: false
+            approvedTime: 2000-01-23T04:56:07.000+00:00
+            allowNotification: true
+            quoteReply: quoteReply
+        first: true
+      properties:
+        first:
+          description: Indicates whether current page is the first page.
+          type: boolean
+        hasNext:
+          description: Indicates whether current page has previous page.
+          type: boolean
+        hasPrevious:
+          description: Indicates whether current page has previous page.
+          type: boolean
+        items:
+          description: A chunk of items.
+          items:
+            $ref: '#/components/schemas/ReplyVo'
+          type: array
+        last:
+          description: Indicates whether current page is the last page.
+          type: boolean
+        page:
+          description: "Page number, starts from 1. If not set or equal to 0, it means\
+            \ no pagination."
+          format: int32
+          type: integer
+        size:
+          description: "Size of each page. If not set or equal to 0, it means no pagination."
+          format: int32
+          type: integer
+        total:
+          description: Total elements.
+          format: int64
+          type: integer
+        totalPages:
+          description: Indicates total pages.
+          format: int64
+          type: integer
+      required:
+      - first
+      - hasNext
+      - hasPrevious
+      - items
+      - last
+      - page
+      - size
+      - total
+      - totalPages
+      type: object
+    ListedPostVo:
+      example:
+        owner:
+          metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          displayName: displayName
+          name: name
+          bio: bio
+          avatar: avatar
+          permalink: permalink
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        stats:
+          comment: 6
+          visit: 5
+          upvote: 1
+        categories:
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          postCount: 6
+          spec:
+            cover: cover
+            template: template
+            children:
+            - children
+            - children
+            hideFromList: true
+            displayName: displayName
+            description: description
+            preventParentPostCascadeQuery: true
+            priority: 1
+            postTemplate: postTemplate
+            slug: slug
+          status:
+            visiblePostCount: 5
+            postCount: 5
+            permalink: permalink
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          postCount: 6
+          spec:
+            cover: cover
+            template: template
+            children:
+            - children
+            - children
+            hideFromList: true
+            displayName: displayName
+            description: description
+            preventParentPostCascadeQuery: true
+            priority: 1
+            postTemplate: postTemplate
+            slug: slug
+          status:
+            visiblePostCount: 5
+            postCount: 5
+            permalink: permalink
+        contributors:
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          displayName: displayName
+          name: name
+          bio: bio
+          avatar: avatar
+          permalink: permalink
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          displayName: displayName
+          name: name
+          bio: bio
+          avatar: avatar
+          permalink: permalink
+        spec:
+          owner: owner
+          template: template
+          publishTime: 2000-01-23T04:56:07.000+00:00
+          pinned: false
+          visible: PUBLIC
+          releaseSnapshot: releaseSnapshot
+          allowComment: true
+          priority: 0
+          title: title
+          baseSnapshot: baseSnapshot
+          headSnapshot: headSnapshot
+          tags:
+          - tags
+          - tags
+          cover: cover
+          deleted: false
+          htmlMetas:
+          - key: htmlMetas
+          - key: htmlMetas
+          publish: false
+          categories:
+          - categories
+          - categories
+          excerpt:
+            raw: raw
+            autoGenerate: true
+          slug: slug
+        status:
+          phase: phase
+          observedVersion: 2
+          inProgress: true
+          hideFromList: true
+          commentsCount: 5
+          lastModifyTime: 2000-01-23T04:56:07.000+00:00
+          contributors:
+          - contributors
+          - contributors
+          conditions:
+          - reason: reason
+            lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+            message: message
+            type: type
+            status: "TRUE"
+          - reason: reason
+            lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+            message: message
+            type: type
+            status: "TRUE"
+          excerpt: excerpt
+          permalink: permalink
+        tags:
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          postCount: 7
+          spec:
+            cover: cover
+            color: color
+            displayName: displayName
+            slug: slug
+          status:
+            observedVersion: 9
+            visiblePostCount: 2
+            postCount: 3
+            permalink: permalink
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          postCount: 7
+          spec:
+            cover: cover
+            color: color
+            displayName: displayName
+            slug: slug
+          status:
+            observedVersion: 9
+            visiblePostCount: 2
+            postCount: 3
+            permalink: permalink
+      properties:
+        categories:
+          items:
+            $ref: '#/components/schemas/CategoryVo'
+          type: array
+        contributors:
+          items:
+            $ref: '#/components/schemas/ContributorVo'
+          type: array
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        owner:
+          $ref: '#/components/schemas/ContributorVo'
+        spec:
+          $ref: '#/components/schemas/PostSpec'
+        stats:
+          $ref: '#/components/schemas/StatsVo'
+        status:
+          $ref: '#/components/schemas/PostStatus'
+        tags:
+          items:
+            $ref: '#/components/schemas/TagVo'
+          type: array
+      required:
+      - metadata
+      type: object
+    ListedPostVoList:
+      example:
+        total: 1
+        last: true
+        size: 7
+        totalPages: 1
+        hasPrevious: true
+        hasNext: true
+        page: 4
+        items:
+        - owner:
+            metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            displayName: displayName
+            name: name
+            bio: bio
+            avatar: avatar
+            permalink: permalink
+          metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          stats:
+            comment: 6
+            visit: 5
+            upvote: 1
+          categories:
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            postCount: 6
+            spec:
+              cover: cover
+              template: template
+              children:
+              - children
+              - children
+              hideFromList: true
+              displayName: displayName
+              description: description
+              preventParentPostCascadeQuery: true
+              priority: 1
+              postTemplate: postTemplate
+              slug: slug
+            status:
+              visiblePostCount: 5
+              postCount: 5
+              permalink: permalink
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            postCount: 6
+            spec:
+              cover: cover
+              template: template
+              children:
+              - children
+              - children
+              hideFromList: true
+              displayName: displayName
+              description: description
+              preventParentPostCascadeQuery: true
+              priority: 1
+              postTemplate: postTemplate
+              slug: slug
+            status:
+              visiblePostCount: 5
+              postCount: 5
+              permalink: permalink
+          contributors:
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            displayName: displayName
+            name: name
+            bio: bio
+            avatar: avatar
+            permalink: permalink
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            displayName: displayName
+            name: name
+            bio: bio
+            avatar: avatar
+            permalink: permalink
+          spec:
+            owner: owner
+            template: template
+            publishTime: 2000-01-23T04:56:07.000+00:00
+            pinned: false
+            visible: PUBLIC
+            releaseSnapshot: releaseSnapshot
+            allowComment: true
+            priority: 0
+            title: title
+            baseSnapshot: baseSnapshot
+            headSnapshot: headSnapshot
+            tags:
+            - tags
+            - tags
+            cover: cover
+            deleted: false
+            htmlMetas:
+            - key: htmlMetas
+            - key: htmlMetas
+            publish: false
+            categories:
+            - categories
+            - categories
+            excerpt:
+              raw: raw
+              autoGenerate: true
+            slug: slug
+          status:
+            phase: phase
+            observedVersion: 2
+            inProgress: true
+            hideFromList: true
+            commentsCount: 5
+            lastModifyTime: 2000-01-23T04:56:07.000+00:00
+            contributors:
+            - contributors
+            - contributors
+            conditions:
+            - reason: reason
+              lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+              message: message
+              type: type
+              status: "TRUE"
+            - reason: reason
+              lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+              message: message
+              type: type
+              status: "TRUE"
+            excerpt: excerpt
+            permalink: permalink
+          tags:
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            postCount: 7
+            spec:
+              cover: cover
+              color: color
+              displayName: displayName
+              slug: slug
+            status:
+              observedVersion: 9
+              visiblePostCount: 2
+              postCount: 3
+              permalink: permalink
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            postCount: 7
+            spec:
+              cover: cover
+              color: color
+              displayName: displayName
+              slug: slug
+            status:
+              observedVersion: 9
+              visiblePostCount: 2
+              postCount: 3
+              permalink: permalink
+        - owner:
+            metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            displayName: displayName
+            name: name
+            bio: bio
+            avatar: avatar
+            permalink: permalink
+          metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          stats:
+            comment: 6
+            visit: 5
+            upvote: 1
+          categories:
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            postCount: 6
+            spec:
+              cover: cover
+              template: template
+              children:
+              - children
+              - children
+              hideFromList: true
+              displayName: displayName
+              description: description
+              preventParentPostCascadeQuery: true
+              priority: 1
+              postTemplate: postTemplate
+              slug: slug
+            status:
+              visiblePostCount: 5
+              postCount: 5
+              permalink: permalink
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            postCount: 6
+            spec:
+              cover: cover
+              template: template
+              children:
+              - children
+              - children
+              hideFromList: true
+              displayName: displayName
+              description: description
+              preventParentPostCascadeQuery: true
+              priority: 1
+              postTemplate: postTemplate
+              slug: slug
+            status:
+              visiblePostCount: 5
+              postCount: 5
+              permalink: permalink
+          contributors:
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            displayName: displayName
+            name: name
+            bio: bio
+            avatar: avatar
+            permalink: permalink
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            displayName: displayName
+            name: name
+            bio: bio
+            avatar: avatar
+            permalink: permalink
+          spec:
+            owner: owner
+            template: template
+            publishTime: 2000-01-23T04:56:07.000+00:00
+            pinned: false
+            visible: PUBLIC
+            releaseSnapshot: releaseSnapshot
+            allowComment: true
+            priority: 0
+            title: title
+            baseSnapshot: baseSnapshot
+            headSnapshot: headSnapshot
+            tags:
+            - tags
+            - tags
+            cover: cover
+            deleted: false
+            htmlMetas:
+            - key: htmlMetas
+            - key: htmlMetas
+            publish: false
+            categories:
+            - categories
+            - categories
+            excerpt:
+              raw: raw
+              autoGenerate: true
+            slug: slug
+          status:
+            phase: phase
+            observedVersion: 2
+            inProgress: true
+            hideFromList: true
+            commentsCount: 5
+            lastModifyTime: 2000-01-23T04:56:07.000+00:00
+            contributors:
+            - contributors
+            - contributors
+            conditions:
+            - reason: reason
+              lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+              message: message
+              type: type
+              status: "TRUE"
+            - reason: reason
+              lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+              message: message
+              type: type
+              status: "TRUE"
+            excerpt: excerpt
+            permalink: permalink
+          tags:
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            postCount: 7
+            spec:
+              cover: cover
+              color: color
+              displayName: displayName
+              slug: slug
+            status:
+              observedVersion: 9
+              visiblePostCount: 2
+              postCount: 3
+              permalink: permalink
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            postCount: 7
+            spec:
+              cover: cover
+              color: color
+              displayName: displayName
+              slug: slug
+            status:
+              observedVersion: 9
+              visiblePostCount: 2
+              postCount: 3
+              permalink: permalink
+        first: true
+      properties:
+        first:
+          description: Indicates whether current page is the first page.
+          type: boolean
+        hasNext:
+          description: Indicates whether current page has previous page.
+          type: boolean
+        hasPrevious:
+          description: Indicates whether current page has previous page.
+          type: boolean
+        items:
+          description: A chunk of items.
+          items:
+            $ref: '#/components/schemas/ListedPostVo'
+          type: array
+        last:
+          description: Indicates whether current page is the last page.
+          type: boolean
+        page:
+          description: "Page number, starts from 1. If not set or equal to 0, it means\
+            \ no pagination."
+          format: int32
+          type: integer
+        size:
+          description: "Size of each page. If not set or equal to 0, it means no pagination."
+          format: int32
+          type: integer
+        total:
+          description: Total elements.
+          format: int64
+          type: integer
+        totalPages:
+          description: Indicates total pages.
+          format: int64
+          type: integer
+      required:
+      - first
+      - hasNext
+      - hasPrevious
+      - items
+      - last
+      - page
+      - size
+      - total
+      - totalPages
+      type: object
+    ListedSinglePageVo:
+      description: A chunk of items.
+      example:
+        owner:
+          metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          displayName: displayName
+          name: name
+          bio: bio
+          avatar: avatar
+          permalink: permalink
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        stats:
+          comment: 6
+          visit: 5
+          upvote: 1
+        contributors:
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          displayName: displayName
+          name: name
+          bio: bio
+          avatar: avatar
+          permalink: permalink
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          displayName: displayName
+          name: name
+          bio: bio
+          avatar: avatar
+          permalink: permalink
+        spec:
+          owner: owner
+          template: template
+          publishTime: 2000-01-23T04:56:07.000+00:00
+          pinned: false
+          visible: PUBLIC
+          releaseSnapshot: releaseSnapshot
+          allowComment: true
+          priority: 0
+          title: title
+          baseSnapshot: baseSnapshot
+          headSnapshot: headSnapshot
+          cover: cover
+          deleted: false
+          htmlMetas:
+          - key: htmlMetas
+          - key: htmlMetas
+          publish: false
+          excerpt:
+            raw: raw
+            autoGenerate: true
+          slug: slug
+        status:
+          phase: phase
+          observedVersion: 1
+          inProgress: true
+          hideFromList: true
+          commentsCount: 6
+          lastModifyTime: 2000-01-23T04:56:07.000+00:00
+          contributors:
+          - contributors
+          - contributors
+          conditions:
+          - reason: reason
+            lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+            message: message
+            type: type
+            status: "TRUE"
+          - reason: reason
+            lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+            message: message
+            type: type
+            status: "TRUE"
+          excerpt: excerpt
+          permalink: permalink
+      properties:
+        contributors:
+          items:
+            $ref: '#/components/schemas/ContributorVo'
+          type: array
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        owner:
+          $ref: '#/components/schemas/ContributorVo'
+        spec:
+          $ref: '#/components/schemas/SinglePageSpec'
+        stats:
+          $ref: '#/components/schemas/StatsVo'
+        status:
+          $ref: '#/components/schemas/SinglePageStatus'
+      required:
+      - metadata
+      type: object
+    ListedSinglePageVoList:
+      example:
+        total: 2
+        last: true
+        size: 5
+        totalPages: 7
+        hasPrevious: true
+        hasNext: true
+        page: 5
+        items:
+        - owner:
+            metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            displayName: displayName
+            name: name
+            bio: bio
+            avatar: avatar
+            permalink: permalink
+          metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          stats:
+            comment: 6
+            visit: 5
+            upvote: 1
+          contributors:
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            displayName: displayName
+            name: name
+            bio: bio
+            avatar: avatar
+            permalink: permalink
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            displayName: displayName
+            name: name
+            bio: bio
+            avatar: avatar
+            permalink: permalink
+          spec:
+            owner: owner
+            template: template
+            publishTime: 2000-01-23T04:56:07.000+00:00
+            pinned: false
+            visible: PUBLIC
+            releaseSnapshot: releaseSnapshot
+            allowComment: true
+            priority: 0
+            title: title
+            baseSnapshot: baseSnapshot
+            headSnapshot: headSnapshot
+            cover: cover
+            deleted: false
+            htmlMetas:
+            - key: htmlMetas
+            - key: htmlMetas
+            publish: false
+            excerpt:
+              raw: raw
+              autoGenerate: true
+            slug: slug
+          status:
+            phase: phase
+            observedVersion: 1
+            inProgress: true
+            hideFromList: true
+            commentsCount: 6
+            lastModifyTime: 2000-01-23T04:56:07.000+00:00
+            contributors:
+            - contributors
+            - contributors
+            conditions:
+            - reason: reason
+              lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+              message: message
+              type: type
+              status: "TRUE"
+            - reason: reason
+              lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+              message: message
+              type: type
+              status: "TRUE"
+            excerpt: excerpt
+            permalink: permalink
+        - owner:
+            metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            displayName: displayName
+            name: name
+            bio: bio
+            avatar: avatar
+            permalink: permalink
+          metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          stats:
+            comment: 6
+            visit: 5
+            upvote: 1
+          contributors:
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            displayName: displayName
+            name: name
+            bio: bio
+            avatar: avatar
+            permalink: permalink
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            displayName: displayName
+            name: name
+            bio: bio
+            avatar: avatar
+            permalink: permalink
+          spec:
+            owner: owner
+            template: template
+            publishTime: 2000-01-23T04:56:07.000+00:00
+            pinned: false
+            visible: PUBLIC
+            releaseSnapshot: releaseSnapshot
+            allowComment: true
+            priority: 0
+            title: title
+            baseSnapshot: baseSnapshot
+            headSnapshot: headSnapshot
+            cover: cover
+            deleted: false
+            htmlMetas:
+            - key: htmlMetas
+            - key: htmlMetas
+            publish: false
+            excerpt:
+              raw: raw
+              autoGenerate: true
+            slug: slug
+          status:
+            phase: phase
+            observedVersion: 1
+            inProgress: true
+            hideFromList: true
+            commentsCount: 6
+            lastModifyTime: 2000-01-23T04:56:07.000+00:00
+            contributors:
+            - contributors
+            - contributors
+            conditions:
+            - reason: reason
+              lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+              message: message
+              type: type
+              status: "TRUE"
+            - reason: reason
+              lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+              message: message
+              type: type
+              status: "TRUE"
+            excerpt: excerpt
+            permalink: permalink
+        first: true
+      properties:
+        first:
+          description: Indicates whether current page is the first page.
+          type: boolean
+        hasNext:
+          description: Indicates whether current page has previous page.
+          type: boolean
+        hasPrevious:
+          description: Indicates whether current page has previous page.
+          type: boolean
+        items:
+          description: A chunk of items.
+          items:
+            $ref: '#/components/schemas/ListedSinglePageVo'
+          type: array
+        last:
+          description: Indicates whether current page is the last page.
+          type: boolean
+        page:
+          description: "Page number, starts from 1. If not set or equal to 0, it means\
+            \ no pagination."
+          format: int32
+          type: integer
+        size:
+          description: "Size of each page. If not set or equal to 0, it means no pagination."
+          format: int32
+          type: integer
+        total:
+          description: Total elements.
+          format: int64
+          type: integer
+        totalPages:
+          description: Indicates total pages.
+          format: int64
+          type: integer
+      required:
+      - first
+      - hasNext
+      - hasPrevious
+      - items
+      - last
+      - page
+      - size
+      - total
+      - totalPages
+      type: object
+    MenuItemSpec:
+      example:
+        targetRef:
+          kind: kind
+          name: name
+          version: version
+          group: group
+        children:
+        - children
+        - children
+        displayName: displayName
+        href: href
+        priority: 0
+        target: _blank
+      properties:
+        children:
+          description: Children of this menu item
+          items:
+            description: The name of menu item child
+            type: string
+          type: array
+          uniqueItems: true
+        displayName:
+          description: The display name of menu item.
+          type: string
+        href:
+          description: The href of this menu item.
+          type: string
+        priority:
+          description: The priority is for ordering.
+          format: int32
+          type: integer
+        target:
+          description: The <a> target attribute of this menu item.
+          enum:
+          - _blank
+          - _self
+          - _parent
+          - _top
+          type: string
+        targetRef:
+          $ref: '#/components/schemas/Ref'
+      type: object
+    MenuItemStatus:
+      example:
+        displayName: displayName
+        href: href
+      properties:
+        displayName:
+          description: Calculated Display name of menu item.
+          type: string
+        href:
+          description: Calculated href of manu item.
+          type: string
+      type: object
+    MenuItemVo:
+      example:
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        parentName: parentName
+        displayName: displayName
+        spec:
+          targetRef:
+            kind: kind
+            name: name
+            version: version
+            group: group
+          children:
+          - children
+          - children
+          displayName: displayName
+          href: href
+          priority: 0
+          target: _blank
+        status:
+          displayName: displayName
+          href: href
+      properties:
+        displayName:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        parentName:
+          type: string
+        spec:
+          $ref: '#/components/schemas/MenuItemSpec'
+        status:
+          $ref: '#/components/schemas/MenuItemStatus'
+      required:
+      - metadata
+      type: object
+    MenuSpec:
+      example:
+        displayName: displayName
+        menuItems:
+        - menuItems
+        - menuItems
+      properties:
+        displayName:
+          description: The display name of the menu.
+          type: string
+        menuItems:
+          description: Menu items of this menu.
+          items:
+            description: Name of menu item.
+            type: string
+          type: array
+          uniqueItems: true
+      required:
+      - displayName
+      type: object
+    MenuVo:
+      example:
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        menuItems:
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          parentName: parentName
+          displayName: displayName
+          spec:
+            targetRef:
+              kind: kind
+              name: name
+              version: version
+              group: group
+            children:
+            - children
+            - children
+            displayName: displayName
+            href: href
+            priority: 0
+            target: _blank
+          status:
+            displayName: displayName
+            href: href
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          parentName: parentName
+          displayName: displayName
+          spec:
+            targetRef:
+              kind: kind
+              name: name
+              version: version
+              group: group
+            children:
+            - children
+            - children
+            displayName: displayName
+            href: href
+            priority: 0
+            target: _blank
+          status:
+            displayName: displayName
+            href: href
+        spec:
+          displayName: displayName
+          menuItems:
+          - menuItems
+          - menuItems
+      properties:
+        menuItems:
+          items:
+            $ref: '#/components/schemas/MenuItemVo'
+          type: array
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        spec:
+          $ref: '#/components/schemas/MenuSpec'
+      required:
+      - metadata
+      type: object
+    Metadata:
+      example:
+        finalizers:
+        - finalizers
+        - finalizers
+        creationTimestamp: 2000-01-23T04:56:07.000+00:00
+        name: name
+        annotations:
+          key: annotations
+        generateName: generateName
+        version: 0
+        deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+        labels:
+          key: labels
+      properties:
+        annotations:
+          additionalProperties:
+            type: string
+          type: object
+        creationTimestamp:
+          format: date-time
+          nullable: true
+          type: string
+        deletionTimestamp:
+          format: date-time
+          nullable: true
+          type: string
+        finalizers:
+          items:
+            nullable: true
+            type: string
+          nullable: true
+          type: array
+          uniqueItems: true
+        generateName:
+          description: The name field will be generated automatically according to
+            the given generateName field
+          type: string
+        labels:
+          additionalProperties:
+            type: string
+          type: object
+        name:
+          description: Metadata name
+          type: string
+        version:
+          format: int64
+          nullable: true
+          type: integer
+      required:
+      - name
+      type: object
+    MoveOperation:
+      properties:
+        from:
+          description: A JSON Pointer path pointing to the location to move/copy from.
+          example: /a/b/c
+          pattern: "^(/[^/~]*(~[01][^/~]*)*)*$"
+          type: string
+        op:
+          enum:
+          - move
+          type: string
+        path:
+          description: A JSON Pointer path pointing to the location to move/copy from.
+          example: /a/b/c
+          pattern: "^(/[^/~]*(~[01][^/~]*)*)*$"
+          type: string
+      required:
+      - from
+      - op
+      - path
+      type: object
+    NavigationPostVo:
+      example:
+        next:
+          owner:
+            metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            displayName: displayName
+            name: name
+            bio: bio
+            avatar: avatar
+            permalink: permalink
+          metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          stats:
+            comment: 6
+            visit: 5
+            upvote: 1
+          categories:
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            postCount: 6
+            spec:
+              cover: cover
+              template: template
+              children:
+              - children
+              - children
+              hideFromList: true
+              displayName: displayName
+              description: description
+              preventParentPostCascadeQuery: true
+              priority: 1
+              postTemplate: postTemplate
+              slug: slug
+            status:
+              visiblePostCount: 5
+              postCount: 5
+              permalink: permalink
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            postCount: 6
+            spec:
+              cover: cover
+              template: template
+              children:
+              - children
+              - children
+              hideFromList: true
+              displayName: displayName
+              description: description
+              preventParentPostCascadeQuery: true
+              priority: 1
+              postTemplate: postTemplate
+              slug: slug
+            status:
+              visiblePostCount: 5
+              postCount: 5
+              permalink: permalink
+          contributors:
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            displayName: displayName
+            name: name
+            bio: bio
+            avatar: avatar
+            permalink: permalink
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            displayName: displayName
+            name: name
+            bio: bio
+            avatar: avatar
+            permalink: permalink
+          content:
+            raw: raw
+            content: content
+          spec:
+            owner: owner
+            template: template
+            publishTime: 2000-01-23T04:56:07.000+00:00
+            pinned: false
+            visible: PUBLIC
+            releaseSnapshot: releaseSnapshot
+            allowComment: true
+            priority: 0
+            title: title
+            baseSnapshot: baseSnapshot
+            headSnapshot: headSnapshot
+            tags:
+            - tags
+            - tags
+            cover: cover
+            deleted: false
+            htmlMetas:
+            - key: htmlMetas
+            - key: htmlMetas
+            publish: false
+            categories:
+            - categories
+            - categories
+            excerpt:
+              raw: raw
+              autoGenerate: true
+            slug: slug
+          status:
+            phase: phase
+            observedVersion: 2
+            inProgress: true
+            hideFromList: true
+            commentsCount: 5
+            lastModifyTime: 2000-01-23T04:56:07.000+00:00
+            contributors:
+            - contributors
+            - contributors
+            conditions:
+            - reason: reason
+              lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+              message: message
+              type: type
+              status: "TRUE"
+            - reason: reason
+              lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+              message: message
+              type: type
+              status: "TRUE"
+            excerpt: excerpt
+            permalink: permalink
+          tags:
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            postCount: 7
+            spec:
+              cover: cover
+              color: color
+              displayName: displayName
+              slug: slug
+            status:
+              observedVersion: 9
+              visiblePostCount: 2
+              postCount: 3
+              permalink: permalink
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            postCount: 7
+            spec:
+              cover: cover
+              color: color
+              displayName: displayName
+              slug: slug
+            status:
+              observedVersion: 9
+              visiblePostCount: 2
+              postCount: 3
+              permalink: permalink
+        current:
+          owner:
+            metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            displayName: displayName
+            name: name
+            bio: bio
+            avatar: avatar
+            permalink: permalink
+          metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          stats:
+            comment: 6
+            visit: 5
+            upvote: 1
+          categories:
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            postCount: 6
+            spec:
+              cover: cover
+              template: template
+              children:
+              - children
+              - children
+              hideFromList: true
+              displayName: displayName
+              description: description
+              preventParentPostCascadeQuery: true
+              priority: 1
+              postTemplate: postTemplate
+              slug: slug
+            status:
+              visiblePostCount: 5
+              postCount: 5
+              permalink: permalink
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            postCount: 6
+            spec:
+              cover: cover
+              template: template
+              children:
+              - children
+              - children
+              hideFromList: true
+              displayName: displayName
+              description: description
+              preventParentPostCascadeQuery: true
+              priority: 1
+              postTemplate: postTemplate
+              slug: slug
+            status:
+              visiblePostCount: 5
+              postCount: 5
+              permalink: permalink
+          contributors:
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            displayName: displayName
+            name: name
+            bio: bio
+            avatar: avatar
+            permalink: permalink
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            displayName: displayName
+            name: name
+            bio: bio
+            avatar: avatar
+            permalink: permalink
+          content:
+            raw: raw
+            content: content
+          spec:
+            owner: owner
+            template: template
+            publishTime: 2000-01-23T04:56:07.000+00:00
+            pinned: false
+            visible: PUBLIC
+            releaseSnapshot: releaseSnapshot
+            allowComment: true
+            priority: 0
+            title: title
+            baseSnapshot: baseSnapshot
+            headSnapshot: headSnapshot
+            tags:
+            - tags
+            - tags
+            cover: cover
+            deleted: false
+            htmlMetas:
+            - key: htmlMetas
+            - key: htmlMetas
+            publish: false
+            categories:
+            - categories
+            - categories
+            excerpt:
+              raw: raw
+              autoGenerate: true
+            slug: slug
+          status:
+            phase: phase
+            observedVersion: 2
+            inProgress: true
+            hideFromList: true
+            commentsCount: 5
+            lastModifyTime: 2000-01-23T04:56:07.000+00:00
+            contributors:
+            - contributors
+            - contributors
+            conditions:
+            - reason: reason
+              lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+              message: message
+              type: type
+              status: "TRUE"
+            - reason: reason
+              lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+              message: message
+              type: type
+              status: "TRUE"
+            excerpt: excerpt
+            permalink: permalink
+          tags:
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            postCount: 7
+            spec:
+              cover: cover
+              color: color
+              displayName: displayName
+              slug: slug
+            status:
+              observedVersion: 9
+              visiblePostCount: 2
+              postCount: 3
+              permalink: permalink
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            postCount: 7
+            spec:
+              cover: cover
+              color: color
+              displayName: displayName
+              slug: slug
+            status:
+              observedVersion: 9
+              visiblePostCount: 2
+              postCount: 3
+              permalink: permalink
+        previous:
+          owner:
+            metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            displayName: displayName
+            name: name
+            bio: bio
+            avatar: avatar
+            permalink: permalink
+          metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          stats:
+            comment: 6
+            visit: 5
+            upvote: 1
+          categories:
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            postCount: 6
+            spec:
+              cover: cover
+              template: template
+              children:
+              - children
+              - children
+              hideFromList: true
+              displayName: displayName
+              description: description
+              preventParentPostCascadeQuery: true
+              priority: 1
+              postTemplate: postTemplate
+              slug: slug
+            status:
+              visiblePostCount: 5
+              postCount: 5
+              permalink: permalink
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            postCount: 6
+            spec:
+              cover: cover
+              template: template
+              children:
+              - children
+              - children
+              hideFromList: true
+              displayName: displayName
+              description: description
+              preventParentPostCascadeQuery: true
+              priority: 1
+              postTemplate: postTemplate
+              slug: slug
+            status:
+              visiblePostCount: 5
+              postCount: 5
+              permalink: permalink
+          contributors:
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            displayName: displayName
+            name: name
+            bio: bio
+            avatar: avatar
+            permalink: permalink
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            displayName: displayName
+            name: name
+            bio: bio
+            avatar: avatar
+            permalink: permalink
+          content:
+            raw: raw
+            content: content
+          spec:
+            owner: owner
+            template: template
+            publishTime: 2000-01-23T04:56:07.000+00:00
+            pinned: false
+            visible: PUBLIC
+            releaseSnapshot: releaseSnapshot
+            allowComment: true
+            priority: 0
+            title: title
+            baseSnapshot: baseSnapshot
+            headSnapshot: headSnapshot
+            tags:
+            - tags
+            - tags
+            cover: cover
+            deleted: false
+            htmlMetas:
+            - key: htmlMetas
+            - key: htmlMetas
+            publish: false
+            categories:
+            - categories
+            - categories
+            excerpt:
+              raw: raw
+              autoGenerate: true
+            slug: slug
+          status:
+            phase: phase
+            observedVersion: 2
+            inProgress: true
+            hideFromList: true
+            commentsCount: 5
+            lastModifyTime: 2000-01-23T04:56:07.000+00:00
+            contributors:
+            - contributors
+            - contributors
+            conditions:
+            - reason: reason
+              lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+              message: message
+              type: type
+              status: "TRUE"
+            - reason: reason
+              lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+              message: message
+              type: type
+              status: "TRUE"
+            excerpt: excerpt
+            permalink: permalink
+          tags:
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            postCount: 7
+            spec:
+              cover: cover
+              color: color
+              displayName: displayName
+              slug: slug
+            status:
+              observedVersion: 9
+              visiblePostCount: 2
+              postCount: 3
+              permalink: permalink
+          - metadata:
+              finalizers:
+              - finalizers
+              - finalizers
+              creationTimestamp: 2000-01-23T04:56:07.000+00:00
+              name: name
+              annotations:
+                key: annotations
+              generateName: generateName
+              version: 0
+              deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+              labels:
+                key: labels
+            postCount: 7
+            spec:
+              cover: cover
+              color: color
+              displayName: displayName
+              slug: slug
+            status:
+              observedVersion: 9
+              visiblePostCount: 2
+              postCount: 3
+              permalink: permalink
+      properties:
+        current:
+          $ref: '#/components/schemas/PostVo'
+        next:
+          $ref: '#/components/schemas/PostVo'
+        previous:
+          $ref: '#/components/schemas/PostVo'
+      type: object
+    OwnerInfo:
+      example:
+        displayName: displayName
+        kind: kind
+        name: name
+        avatar: avatar
+        email: email
+      properties:
+        avatar:
+          type: string
+        displayName:
+          type: string
+        email:
+          type: string
+        kind:
+          type: string
+        name:
+          type: string
+      type: object
+    PostSpec:
+      example:
+        owner: owner
+        template: template
+        publishTime: 2000-01-23T04:56:07.000+00:00
+        pinned: false
+        visible: PUBLIC
+        releaseSnapshot: releaseSnapshot
+        allowComment: true
+        priority: 0
+        title: title
+        baseSnapshot: baseSnapshot
+        headSnapshot: headSnapshot
+        tags:
+        - tags
+        - tags
+        cover: cover
+        deleted: false
+        htmlMetas:
+        - key: htmlMetas
+        - key: htmlMetas
+        publish: false
+        categories:
+        - categories
+        - categories
+        excerpt:
+          raw: raw
+          autoGenerate: true
+        slug: slug
+      properties:
+        allowComment:
+          default: true
+          type: boolean
+        baseSnapshot:
+          type: string
+        categories:
+          items:
+            type: string
+          type: array
+        cover:
+          type: string
+        deleted:
+          default: false
+          type: boolean
+        excerpt:
+          $ref: '#/components/schemas/Excerpt'
+        headSnapshot:
+          type: string
+        htmlMetas:
+          items:
+            additionalProperties:
+              type: string
+            type: object
+          type: array
+        owner:
+          type: string
+        pinned:
+          default: false
+          type: boolean
+        priority:
+          default: 0
+          format: int32
+          type: integer
+        publish:
+          default: false
+          type: boolean
+        publishTime:
+          format: date-time
+          type: string
+        releaseSnapshot:
+          type: string
+        slug:
+          minLength: 1
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+        template:
+          type: string
+        title:
+          minLength: 1
+          type: string
+        visible:
+          default: PUBLIC
+          enum:
+          - PUBLIC
+          - INTERNAL
+          - PRIVATE
+          type: string
+      required:
+      - allowComment
+      - deleted
+      - excerpt
+      - pinned
+      - priority
+      - publish
+      - slug
+      - title
+      - visible
+      type: object
+    PostStatus:
+      example:
+        phase: phase
+        observedVersion: 2
+        inProgress: true
+        hideFromList: true
+        commentsCount: 5
+        lastModifyTime: 2000-01-23T04:56:07.000+00:00
+        contributors:
+        - contributors
+        - contributors
+        conditions:
+        - reason: reason
+          lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+          message: message
+          type: type
+          status: "TRUE"
+        - reason: reason
+          lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+          message: message
+          type: type
+          status: "TRUE"
+        excerpt: excerpt
+        permalink: permalink
+      properties:
+        commentsCount:
+          format: int32
+          type: integer
+        conditions:
+          items:
+            $ref: '#/components/schemas/Condition'
+          properties:
+            empty:
+              type: boolean
+          type: array
+        contributors:
+          items:
+            type: string
+          type: array
+        excerpt:
+          type: string
+        hideFromList:
+          type: boolean
+        inProgress:
+          type: boolean
+        lastModifyTime:
+          format: date-time
+          type: string
+        observedVersion:
+          format: int64
+          type: integer
+        permalink:
+          type: string
+        phase:
+          type: string
+      type: object
+    PostVo:
+      example:
+        owner:
+          metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          displayName: displayName
+          name: name
+          bio: bio
+          avatar: avatar
+          permalink: permalink
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        stats:
+          comment: 6
+          visit: 5
+          upvote: 1
+        categories:
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          postCount: 6
+          spec:
+            cover: cover
+            template: template
+            children:
+            - children
+            - children
+            hideFromList: true
+            displayName: displayName
+            description: description
+            preventParentPostCascadeQuery: true
+            priority: 1
+            postTemplate: postTemplate
+            slug: slug
+          status:
+            visiblePostCount: 5
+            postCount: 5
+            permalink: permalink
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          postCount: 6
+          spec:
+            cover: cover
+            template: template
+            children:
+            - children
+            - children
+            hideFromList: true
+            displayName: displayName
+            description: description
+            preventParentPostCascadeQuery: true
+            priority: 1
+            postTemplate: postTemplate
+            slug: slug
+          status:
+            visiblePostCount: 5
+            postCount: 5
+            permalink: permalink
+        contributors:
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          displayName: displayName
+          name: name
+          bio: bio
+          avatar: avatar
+          permalink: permalink
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          displayName: displayName
+          name: name
+          bio: bio
+          avatar: avatar
+          permalink: permalink
+        content:
+          raw: raw
+          content: content
+        spec:
+          owner: owner
+          template: template
+          publishTime: 2000-01-23T04:56:07.000+00:00
+          pinned: false
+          visible: PUBLIC
+          releaseSnapshot: releaseSnapshot
+          allowComment: true
+          priority: 0
+          title: title
+          baseSnapshot: baseSnapshot
+          headSnapshot: headSnapshot
+          tags:
+          - tags
+          - tags
+          cover: cover
+          deleted: false
+          htmlMetas:
+          - key: htmlMetas
+          - key: htmlMetas
+          publish: false
+          categories:
+          - categories
+          - categories
+          excerpt:
+            raw: raw
+            autoGenerate: true
+          slug: slug
+        status:
+          phase: phase
+          observedVersion: 2
+          inProgress: true
+          hideFromList: true
+          commentsCount: 5
+          lastModifyTime: 2000-01-23T04:56:07.000+00:00
+          contributors:
+          - contributors
+          - contributors
+          conditions:
+          - reason: reason
+            lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+            message: message
+            type: type
+            status: "TRUE"
+          - reason: reason
+            lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+            message: message
+            type: type
+            status: "TRUE"
+          excerpt: excerpt
+          permalink: permalink
+        tags:
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          postCount: 7
+          spec:
+            cover: cover
+            color: color
+            displayName: displayName
+            slug: slug
+          status:
+            observedVersion: 9
+            visiblePostCount: 2
+            postCount: 3
+            permalink: permalink
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          postCount: 7
+          spec:
+            cover: cover
+            color: color
+            displayName: displayName
+            slug: slug
+          status:
+            observedVersion: 9
+            visiblePostCount: 2
+            postCount: 3
+            permalink: permalink
+      properties:
+        categories:
+          items:
+            $ref: '#/components/schemas/CategoryVo'
+          type: array
+        content:
+          $ref: '#/components/schemas/ContentVo'
+        contributors:
+          items:
+            $ref: '#/components/schemas/ContributorVo'
+          type: array
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        owner:
+          $ref: '#/components/schemas/ContributorVo'
+        spec:
+          $ref: '#/components/schemas/PostSpec'
+        stats:
+          $ref: '#/components/schemas/StatsVo'
+        status:
+          $ref: '#/components/schemas/PostStatus'
+        tags:
+          items:
+            $ref: '#/components/schemas/TagVo'
+          type: array
+      required:
+      - metadata
+      type: object
+    Ref:
+      description: Extension reference object. The name is mandatory
+      example:
+        kind: kind
+        name: name
+        version: version
+        group: group
+      properties:
+        group:
+          description: Extension group
+          type: string
+        kind:
+          description: Extension kind
+          type: string
+        name:
+          description: Extension name. This field is mandatory
+          type: string
+        version:
+          description: Extension version
+          type: string
+      required:
+      - name
+      type: object
+    RemoveOperation:
+      properties:
+        op:
+          enum:
+          - remove
+          type: string
+        path:
+          description: A JSON Pointer path pointing to the location to move/copy from.
+          example: /a/b/c
+          pattern: "^(/[^/~]*(~[01][^/~]*)*)*$"
+          type: string
+      required:
+      - op
+      - path
+      type: object
+    ReplaceOperation:
+      properties:
+        op:
+          enum:
+          - replace
+          type: string
+        path:
+          description: A JSON Pointer path pointing to the location to move/copy from.
+          example: /a/b/c
+          pattern: "^(/[^/~]*(~[01][^/~]*)*)*$"
+          type: string
+        value:
+          description: Value can be any JSON value
+      required:
+      - op
+      - path
+      - value
+      type: object
+    Reply:
+      example:
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        apiVersion: apiVersion
+        kind: kind
+        spec:
+          owner:
+            displayName: displayName
+            kind: kind
+            name: name
+            annotations:
+              key: annotations
+          creationTime: 2000-01-23T04:56:07.000+00:00
+          hidden: false
+          ipAddress: ipAddress
+          raw: raw
+          userAgent: userAgent
+          priority: 0
+          content: content
+          approved: false
+          commentName: commentName
+          top: false
+          approvedTime: 2000-01-23T04:56:07.000+00:00
+          allowNotification: true
+          quoteReply: quoteReply
+        status:
+          observedVersion: 0
+      properties:
+        apiVersion:
+          type: string
+        kind:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        spec:
+          $ref: '#/components/schemas/ReplySpec'
+        status:
+          $ref: '#/components/schemas/ReplyStatus'
+      required:
+      - apiVersion
+      - kind
+      - metadata
+      - spec
+      - status
+      type: object
+    ReplyRequest:
+      example:
+        owner:
+          website: website
+          displayName: displayName
+          avatar: avatar
+          email: email
+        raw: raw
+        allowNotification: false
+        quoteReply: quoteReply
+        content: content
+      properties:
+        allowNotification:
+          default: false
+          type: boolean
+        content:
+          minLength: 1
+          type: string
+        owner:
+          $ref: '#/components/schemas/CommentEmailOwner'
+        quoteReply:
+          type: string
+        raw:
+          minLength: 1
+          type: string
+      required:
+      - content
+      - raw
+      type: object
+    ReplySpec:
+      example:
+        owner:
+          displayName: displayName
+          kind: kind
+          name: name
+          annotations:
+            key: annotations
+        creationTime: 2000-01-23T04:56:07.000+00:00
+        hidden: false
+        ipAddress: ipAddress
+        raw: raw
+        userAgent: userAgent
+        priority: 0
+        content: content
+        approved: false
+        commentName: commentName
+        top: false
+        approvedTime: 2000-01-23T04:56:07.000+00:00
+        allowNotification: true
+        quoteReply: quoteReply
+      properties:
+        allowNotification:
+          default: true
+          type: boolean
+        approved:
+          default: false
+          type: boolean
+        approvedTime:
+          format: date-time
+          type: string
+        commentName:
+          minLength: 1
+          type: string
+        content:
+          minLength: 1
+          type: string
+        creationTime:
+          format: date-time
+          type: string
+        hidden:
+          default: false
+          type: boolean
+        ipAddress:
+          type: string
+        owner:
+          $ref: '#/components/schemas/CommentOwner'
+        priority:
+          default: 0
+          format: int32
+          type: integer
+        quoteReply:
+          type: string
+        raw:
+          minLength: 1
+          type: string
+        top:
+          default: false
+          type: boolean
+        userAgent:
+          type: string
+      required:
+      - allowNotification
+      - approved
+      - commentName
+      - content
+      - hidden
+      - owner
+      - priority
+      - raw
+      - top
+      type: object
+    ReplyStatus:
+      example:
+        observedVersion: 0
+      properties:
+        observedVersion:
+          format: int64
+          type: integer
+      type: object
+    ReplyVo:
+      description: A chunk of items.
+      example:
+        owner:
+          displayName: displayName
+          kind: kind
+          name: name
+          avatar: avatar
+          email: email
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        stats:
+          upvote: 6
+        spec:
+          owner:
+            displayName: displayName
+            kind: kind
+            name: name
+            annotations:
+              key: annotations
+          creationTime: 2000-01-23T04:56:07.000+00:00
+          hidden: false
+          ipAddress: ipAddress
+          raw: raw
+          userAgent: userAgent
+          priority: 0
+          content: content
+          approved: false
+          commentName: commentName
+          top: false
+          approvedTime: 2000-01-23T04:56:07.000+00:00
+          allowNotification: true
+          quoteReply: quoteReply
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        owner:
+          $ref: '#/components/schemas/OwnerInfo'
+        spec:
+          $ref: '#/components/schemas/ReplySpec'
+        stats:
+          $ref: '#/components/schemas/CommentStatsVo'
+      required:
+      - metadata
+      - owner
+      - spec
+      - stats
+      type: object
+    ReplyVoList:
+      example:
+        total: 1
+        last: true
+        size: 6
+        totalPages: 5
+        hasPrevious: true
+        hasNext: true
+        page: 0
+        items:
+        - owner:
+            displayName: displayName
+            kind: kind
+            name: name
+            avatar: avatar
+            email: email
+          metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          stats:
+            upvote: 6
+          spec:
+            owner:
+              displayName: displayName
+              kind: kind
+              name: name
+              annotations:
+                key: annotations
+            creationTime: 2000-01-23T04:56:07.000+00:00
+            hidden: false
+            ipAddress: ipAddress
+            raw: raw
+            userAgent: userAgent
+            priority: 0
+            content: content
+            approved: false
+            commentName: commentName
+            top: false
+            approvedTime: 2000-01-23T04:56:07.000+00:00
+            allowNotification: true
+            quoteReply: quoteReply
+        - owner:
+            displayName: displayName
+            kind: kind
+            name: name
+            avatar: avatar
+            email: email
+          metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          stats:
+            upvote: 6
+          spec:
+            owner:
+              displayName: displayName
+              kind: kind
+              name: name
+              annotations:
+                key: annotations
+            creationTime: 2000-01-23T04:56:07.000+00:00
+            hidden: false
+            ipAddress: ipAddress
+            raw: raw
+            userAgent: userAgent
+            priority: 0
+            content: content
+            approved: false
+            commentName: commentName
+            top: false
+            approvedTime: 2000-01-23T04:56:07.000+00:00
+            allowNotification: true
+            quoteReply: quoteReply
+        first: true
+      properties:
+        first:
+          description: Indicates whether current page is the first page.
+          type: boolean
+        hasNext:
+          description: Indicates whether current page has previous page.
+          type: boolean
+        hasPrevious:
+          description: Indicates whether current page has previous page.
+          type: boolean
+        items:
+          description: A chunk of items.
+          items:
+            $ref: '#/components/schemas/ReplyVo'
+          type: array
+        last:
+          description: Indicates whether current page is the last page.
+          type: boolean
+        page:
+          description: "Page number, starts from 1. If not set or equal to 0, it means\
+            \ no pagination."
+          format: int32
+          type: integer
+        size:
+          description: "Size of each page. If not set or equal to 0, it means no pagination."
+          format: int32
+          type: integer
+        total:
+          description: Total elements.
+          format: int64
+          type: integer
+        totalPages:
+          description: Indicates total pages.
+          format: int64
+          type: integer
+      required:
+      - first
+      - hasNext
+      - hasPrevious
+      - items
+      - last
+      - page
+      - size
+      - total
+      - totalPages
+      type: object
+    SearchOption:
+      example:
+        includeTypes:
+        - includeTypes
+        - includeTypes
+        filterExposed: true
+        filterPublished: true
+        filterRecycled: true
+        includeCategoryNames:
+        - includeCategoryNames
+        - includeCategoryNames
+        limit: 81
+        annotations:
+          key: annotations
+        highlightPostTag: highlightPostTag
+        includeOwnerNames:
+        - includeOwnerNames
+        - includeOwnerNames
+        highlightPreTag: highlightPreTag
+        keyword: keyword
+        includeTagNames:
+        - includeTagNames
+        - includeTagNames
+      properties:
+        annotations:
+          additionalProperties:
+            type: string
+          type: object
+        filterExposed:
+          type: boolean
+        filterPublished:
+          type: boolean
+        filterRecycled:
+          type: boolean
+        highlightPostTag:
+          type: string
+        highlightPreTag:
+          type: string
+        includeCategoryNames:
+          items:
+            type: string
+          type: array
+        includeOwnerNames:
+          items:
+            type: string
+          type: array
+        includeTagNames:
+          items:
+            type: string
+          type: array
+        includeTypes:
+          items:
+            type: string
+          type: array
+        keyword:
+          type: string
+        limit:
+          format: int32
+          maximum: 1000
+          minimum: 1
+          type: integer
+      required:
+      - keyword
+      type: object
+    SearchResult:
+      example:
+        hits:
+        - annotations:
+            key: annotations
+          description: description
+          metadataName: metadataName
+          published: true
+          title: title
+          type: type
+          content: content
+          updateTimestamp: 2000-01-23T04:56:07.000+00:00
+          tags:
+          - tags
+          - tags
+          recycled: true
+          ownerName: ownerName
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          exposed: true
+          categories:
+          - categories
+          - categories
+          id: id
+          permalink: permalink
+        - annotations:
+            key: annotations
+          description: description
+          metadataName: metadataName
+          published: true
+          title: title
+          type: type
+          content: content
+          updateTimestamp: 2000-01-23T04:56:07.000+00:00
+          tags:
+          - tags
+          - tags
+          recycled: true
+          ownerName: ownerName
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          exposed: true
+          categories:
+          - categories
+          - categories
+          id: id
+          permalink: permalink
+        processingTimeMillis: 6
+        total: 1
+        limit: 0
+        keyword: keyword
+      properties:
+        hits:
+          items:
+            $ref: '#/components/schemas/HaloDocument'
+          type: array
+        keyword:
+          type: string
+        limit:
+          format: int32
+          type: integer
+        processingTimeMillis:
+          format: int64
+          type: integer
+        total:
+          format: int64
+          type: integer
+      type: object
+    SinglePageSpec:
+      example:
+        owner: owner
+        template: template
+        publishTime: 2000-01-23T04:56:07.000+00:00
+        pinned: false
+        visible: PUBLIC
+        releaseSnapshot: releaseSnapshot
+        allowComment: true
+        priority: 0
+        title: title
+        baseSnapshot: baseSnapshot
+        headSnapshot: headSnapshot
+        cover: cover
+        deleted: false
+        htmlMetas:
+        - key: htmlMetas
+        - key: htmlMetas
+        publish: false
+        excerpt:
+          raw: raw
+          autoGenerate: true
+        slug: slug
+      properties:
+        allowComment:
+          default: true
+          type: boolean
+        baseSnapshot:
+          type: string
+        cover:
+          type: string
+        deleted:
+          default: false
+          type: boolean
+        excerpt:
+          $ref: '#/components/schemas/Excerpt'
+        headSnapshot:
+          type: string
+        htmlMetas:
+          items:
+            additionalProperties:
+              type: string
+            type: object
+          type: array
+        owner:
+          type: string
+        pinned:
+          default: false
+          type: boolean
+        priority:
+          default: 0
+          format: int32
+          type: integer
+        publish:
+          default: false
+          type: boolean
+        publishTime:
+          format: date-time
+          type: string
+        releaseSnapshot:
+          type: string
+        slug:
+          minLength: 1
+          type: string
+        template:
+          type: string
+        title:
+          minLength: 1
+          type: string
+        visible:
+          default: PUBLIC
+          enum:
+          - PUBLIC
+          - INTERNAL
+          - PRIVATE
+          type: string
+      required:
+      - allowComment
+      - deleted
+      - excerpt
+      - pinned
+      - priority
+      - publish
+      - slug
+      - title
+      - visible
+      type: object
+    SinglePageStatus:
+      example:
+        phase: phase
+        observedVersion: 1
+        inProgress: true
+        hideFromList: true
+        commentsCount: 6
+        lastModifyTime: 2000-01-23T04:56:07.000+00:00
+        contributors:
+        - contributors
+        - contributors
+        conditions:
+        - reason: reason
+          lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+          message: message
+          type: type
+          status: "TRUE"
+        - reason: reason
+          lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+          message: message
+          type: type
+          status: "TRUE"
+        excerpt: excerpt
+        permalink: permalink
+      properties:
+        commentsCount:
+          format: int32
+          type: integer
+        conditions:
+          items:
+            $ref: '#/components/schemas/Condition'
+          properties:
+            empty:
+              type: boolean
+          type: array
+        contributors:
+          items:
+            type: string
+          type: array
+        excerpt:
+          type: string
+        hideFromList:
+          type: boolean
+        inProgress:
+          type: boolean
+        lastModifyTime:
+          format: date-time
+          type: string
+        observedVersion:
+          format: int64
+          type: integer
+        permalink:
+          type: string
+        phase:
+          type: string
+      type: object
+    SinglePageVo:
+      example:
+        owner:
+          metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          displayName: displayName
+          name: name
+          bio: bio
+          avatar: avatar
+          permalink: permalink
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        stats:
+          comment: 6
+          visit: 5
+          upvote: 1
+        contributors:
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          displayName: displayName
+          name: name
+          bio: bio
+          avatar: avatar
+          permalink: permalink
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          displayName: displayName
+          name: name
+          bio: bio
+          avatar: avatar
+          permalink: permalink
+        content:
+          raw: raw
+          content: content
+        spec:
+          owner: owner
+          template: template
+          publishTime: 2000-01-23T04:56:07.000+00:00
+          pinned: false
+          visible: PUBLIC
+          releaseSnapshot: releaseSnapshot
+          allowComment: true
+          priority: 0
+          title: title
+          baseSnapshot: baseSnapshot
+          headSnapshot: headSnapshot
+          cover: cover
+          deleted: false
+          htmlMetas:
+          - key: htmlMetas
+          - key: htmlMetas
+          publish: false
+          excerpt:
+            raw: raw
+            autoGenerate: true
+          slug: slug
+        status:
+          phase: phase
+          observedVersion: 1
+          inProgress: true
+          hideFromList: true
+          commentsCount: 6
+          lastModifyTime: 2000-01-23T04:56:07.000+00:00
+          contributors:
+          - contributors
+          - contributors
+          conditions:
+          - reason: reason
+            lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+            message: message
+            type: type
+            status: "TRUE"
+          - reason: reason
+            lastTransitionTime: 2000-01-23T04:56:07.000+00:00
+            message: message
+            type: type
+            status: "TRUE"
+          excerpt: excerpt
+          permalink: permalink
+      properties:
+        content:
+          $ref: '#/components/schemas/ContentVo'
+        contributors:
+          items:
+            $ref: '#/components/schemas/ContributorVo'
+          type: array
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        owner:
+          $ref: '#/components/schemas/ContributorVo'
+        spec:
+          $ref: '#/components/schemas/SinglePageSpec'
+        stats:
+          $ref: '#/components/schemas/StatsVo'
+        status:
+          $ref: '#/components/schemas/SinglePageStatus'
+      required:
+      - metadata
+      type: object
+    SiteStatsVo:
+      example:
+        post: 1
+        comment: 6
+        visit: 5
+        category: 0
+        upvote: 5
+      properties:
+        category:
+          format: int32
+          type: integer
+        comment:
+          format: int32
+          type: integer
+        post:
+          format: int32
+          type: integer
+        upvote:
+          format: int32
+          type: integer
+        visit:
+          format: int32
+          type: integer
+      type: object
+    StatsVo:
+      example:
+        comment: 6
+        visit: 5
+        upvote: 1
+      properties:
+        comment:
+          format: int32
+          type: integer
+        upvote:
+          format: int32
+          type: integer
+        visit:
+          format: int32
+          type: integer
+      type: object
+    TagSpec:
+      example:
+        cover: cover
+        color: color
+        displayName: displayName
+        slug: slug
+      properties:
+        color:
+          pattern: "^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$"
+          type: string
+        cover:
+          type: string
+        displayName:
+          minLength: 1
+          type: string
+        slug:
+          minLength: 1
+          type: string
+      required:
+      - displayName
+      - slug
+      type: object
+    TagStatus:
+      example:
+        observedVersion: 9
+        visiblePostCount: 2
+        postCount: 3
+        permalink: permalink
+      properties:
+        observedVersion:
+          format: int64
+          type: integer
+        permalink:
+          type: string
+        postCount:
+          format: int32
+          type: integer
+        visiblePostCount:
+          format: int32
+          type: integer
+      type: object
+    TagVo:
+      example:
+        metadata:
+          finalizers:
+          - finalizers
+          - finalizers
+          creationTimestamp: 2000-01-23T04:56:07.000+00:00
+          name: name
+          annotations:
+            key: annotations
+          generateName: generateName
+          version: 0
+          deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+          labels:
+            key: labels
+        postCount: 7
+        spec:
+          cover: cover
+          color: color
+          displayName: displayName
+          slug: slug
+        status:
+          observedVersion: 9
+          visiblePostCount: 2
+          postCount: 3
+          permalink: permalink
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+        postCount:
+          format: int32
+          type: integer
+        spec:
+          $ref: '#/components/schemas/TagSpec'
+        status:
+          $ref: '#/components/schemas/TagStatus'
+      required:
+      - metadata
+      type: object
+    TagVoList:
+      example:
+        total: 1
+        last: true
+        size: 6
+        totalPages: 5
+        hasPrevious: true
+        hasNext: true
+        page: 0
+        items:
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          postCount: 7
+          spec:
+            cover: cover
+            color: color
+            displayName: displayName
+            slug: slug
+          status:
+            observedVersion: 9
+            visiblePostCount: 2
+            postCount: 3
+            permalink: permalink
+        - metadata:
+            finalizers:
+            - finalizers
+            - finalizers
+            creationTimestamp: 2000-01-23T04:56:07.000+00:00
+            name: name
+            annotations:
+              key: annotations
+            generateName: generateName
+            version: 0
+            deletionTimestamp: 2000-01-23T04:56:07.000+00:00
+            labels:
+              key: labels
+          postCount: 7
+          spec:
+            cover: cover
+            color: color
+            displayName: displayName
+            slug: slug
+          status:
+            observedVersion: 9
+            visiblePostCount: 2
+            postCount: 3
+            permalink: permalink
+        first: true
+      properties:
+        first:
+          description: Indicates whether current page is the first page.
+          type: boolean
+        hasNext:
+          description: Indicates whether current page has previous page.
+          type: boolean
+        hasPrevious:
+          description: Indicates whether current page has previous page.
+          type: boolean
+        items:
+          description: A chunk of items.
+          items:
+            $ref: '#/components/schemas/TagVo'
+          type: array
+        last:
+          description: Indicates whether current page is the last page.
+          type: boolean
+        page:
+          description: "Page number, starts from 1. If not set or equal to 0, it means\
+            \ no pagination."
+          format: int32
+          type: integer
+        size:
+          description: "Size of each page. If not set or equal to 0, it means no pagination."
+          format: int32
+          type: integer
+        total:
+          description: Total elements.
+          format: int64
+          type: integer
+        totalPages:
+          description: Indicates total pages.
+          format: int64
+          type: integer
+      required:
+      - first
+      - hasNext
+      - hasPrevious
+      - items
+      - last
+      - page
+      - size
+      - total
+      - totalPages
+      type: object
+    TestOperation:
+      properties:
+        op:
+          enum:
+          - test
+          type: string
+        path:
+          description: A JSON Pointer path pointing to the location to move/copy from.
+          example: /a/b/c
+          pattern: "^(/[^/~]*(~[01][^/~]*)*)*$"
+          type: string
+        value:
+          description: Value can be any JSON value
+      required:
+      - op
+      - path
+      - value
+      type: object
+    VoteRequest:
+      example:
+        plural: plural
+        name: name
+        group: group
+      properties:
+        group:
+          type: string
+        name:
+          type: string
+        plural:
+          type: string
+      type: object
+    JsonPatch_inner:
+      oneOf:
+      - $ref: '#/components/schemas/AddOperation'
+      - $ref: '#/components/schemas/ReplaceOperation'
+      - $ref: '#/components/schemas/TestOperation'
+      - $ref: '#/components/schemas/RemoveOperation'
+      - $ref: '#/components/schemas/MoveOperation'
+      - $ref: '#/components/schemas/CopyOperation'
+  securitySchemes:
+    basicAuth:
+      scheme: basic
+      type: http
+    bearerAuth:
+      bearerFormat: JWT
+      scheme: bearer
+      type: http
