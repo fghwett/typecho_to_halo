@@ -1,0 +1,95 @@
+version: 3
+
+vars:
+  DIR: _tmp/
+  OPENAPI_DIR: openapi/
+
+tasks:
+  down-json:
+    desc: 下载官方协议
+    cmds:
+      - mkdir -p {{.DIR}}{{.OPENAPI_DIR}}
+      - curl -o {{.DIR}}{{.OPENAPI_DIR}}aggregated.json https://api.halo.run/assets/aggregated-DQhGUNLK.json
+      - curl -o {{.DIR}}{{.OPENAPI_DIR}}console.json https://api.halo.run/assets/apis_console.api_v1alpha1-D962zIMv.json
+      - curl -o {{.DIR}}{{.OPENAPI_DIR}}extension.json https://api.halo.run/assets/apis_extension.api_v1alpha1-DWX-TFLS.json
+      - curl -o {{.DIR}}{{.OPENAPI_DIR}}public.json https://api.halo.run/assets/apis_public.api_v1alpha1-LXoVm04F.json
+      - curl -o {{.DIR}}{{.OPENAPI_DIR}}user.json https://api.halo.run/assets/apis_uc.api_v1alpha1-C4ZaDDIK.json
+
+  gen-sdk:
+    desc: 生成SDK
+    cmds:
+      - rm -rf pkg
+      - for:
+          - aggregated
+          - console
+          - extension
+          - public
+          - user
+        cmd: |
+          openapi-generator generate \
+            -i {{.DIR}}{{.OPENAPI_DIR}}{{.ITEM}}.json \
+            -g go \
+            --git-host api.halo.run \
+            --git-user-id apis \
+            --git-repo-id openapi-go-{{.ITEM}} \
+            -o ./pkg/{{.ITEM}} \
+            --package-name {{.ITEM}}_sdk \
+            --additional-properties=enumClassPrefix=true,generateInterfaces=true,packageVersion=1.0.1
+#      - openapi-generator generate -i swagger.json -g go --git-host api.halo.run --git-user-id apis --git-repo-id openapi-go-answer -o ./pkg/answer-openapi-test --package-name answer_sdk --skip-validate-spec --api-package answer_sdk
+
+  gen-db:
+    desc: 生成数据库代码
+    dir: cmds/db/
+    cmds:
+      - rm -rf ../../pkg/typecho
+      - go run main.go
+
+  run:
+    desc: 运行迁移程序
+    dir: cmds/migrate/
+    cmds:
+      - go run main.go
+
+  up-halo:
+    desc: 启动halo
+    dir: _tmp/halo
+    cmds:
+      - docker-compose up -d
+
+  down-halo:
+    desc: 停止halo
+    dir: _tmp/halo
+    cmds:
+      - docker-compose down
+
+  recover-halo:
+    desc: 恢复halo
+    dir: _tmp/halo
+    cmds:
+      - rm -rf halo2
+      - cp -r halo_bak halo2
+
+  logs-halo:
+    desc: halo日志
+    dir: _tmp/halo
+    cmds:
+      - docker-compose logs -f
+
+  up-typecho:
+    desc: 启动typecho
+    dir: _tmp/typecho
+    cmds:
+      - docker-compose up -d
+
+  down-typecho:
+    desc: 停止typecho
+    dir: _tmp/typecho
+    cmds:
+      - docker-compose down
+
+  gen-config:
+    desc: 拷贝示例配置文件
+    cmds:
+      - mkdir -p _tmp/config/
+      - cp config-example.yaml _tmp/config/config.yaml
+

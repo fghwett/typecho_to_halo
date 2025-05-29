@@ -1,0 +1,15 @@
+typecho:
+  type: mysql # 数据库类型 gorm支持范围
+  baseUrl: https://example.com # 域名信息
+  dsn: { username }:{password}@tcp({ip}:{port})/{db_name}?charset=utf8mb4&parseTime=True&loc=Local # 修改数据库配置 此处为mysql示例 需要符合gorm配置规范
+
+halo:
+  host: domain:port # 域名（包含端口）
+  schema: https # 协议
+  token: { 个人token } # 权限要给足
+  debug: false # 是否打印SDK日志 可保持
+  policyName: default-policy # 默认存储策略 可保持
+  groupName: { 文件分组名称 } # 默认留空
+
+fileManager:
+  dir: { 文件缓存目录 } # ./_tmp/
