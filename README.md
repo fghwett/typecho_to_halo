@@ -31,6 +31,12 @@
    1. 数据备份
    2. 获取可访问的数据库信息
 
+### 使用
+
+1. 下载[最新版本](https://github.com/fghwett/typecho_to_halo/releases)对应的文件
+2. 解压文件
+3. 修改配置文件`config.json`
+4. 运行`./typecho-to-halo`
 
 ### 开发
 
