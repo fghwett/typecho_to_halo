@@ -2,3 +2,5 @@
 _tmp/
 pkg/
 
+# Added by goreleaser init:
+dist/
