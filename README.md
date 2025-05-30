@@ -92,6 +92,8 @@ if err != nil {
 }
 ```
 
+> 生成sdk的模板位置 [OpenAPITools/openapi-generator](https://github.com/OpenAPITools/openapi-generator/blob/2fb26c362ea6557c90353606ccdc3c446d6a8f35/modules/openapi-generator/src/main/resources/go/client.mustache#L343)，有兴趣的小伙伴可以提一个PR。
+
 快捷命令
 
 ```shell
